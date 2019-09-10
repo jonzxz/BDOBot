@@ -3,7 +3,7 @@ import requests, discord
 
 headers = requests.utils.default_headers()
 
-TOKEN = 'NjIwOTgwNzY1NjU1Njk1Mzcx.XXeupw.fczb3pTfNNfqVEgKvIzgX6d1-5g'
+TOKEN = ''
 
 nezuko = discord.Client()
 
