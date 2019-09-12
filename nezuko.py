@@ -1,6 +1,8 @@
+
 import discord
 from Scraper import Scraper
 from data import FAILSTACK, getday
+
 
 scraper = Scraper()
 nezuko = discord.Client()
