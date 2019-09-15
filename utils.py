@@ -2,10 +2,6 @@ import datetime as dt
 from Time import Time
 import math
 
-#Day of week = 0 - 6
-dayofweek = dt.datetime.today().weekday()
-
-#Time now
 time = dt.datetime.now().time()
 
 def get_token():
@@ -17,13 +13,18 @@ def get_token():
         print("TOKEN NOT FOUND")
 
 def nextboss():
+    # Day of week = 0 - 6
+    dayofweek = dt.datetime.today().weekday()
+
+    # Time now
+    timenow = dt.datetime.now().time()
     boss=''
     bosstime=''
     today = dayofweek
     is_found = False
     try:
         for i, value in enumerate(week[today]):
-            if time < value.get_time():
+            if timenow < value.get_time():
                 is_found = True
                 boss = week[today][i].get_name()
                 bosstime = (week[today][i].get_time()).strftime('%H:%M')

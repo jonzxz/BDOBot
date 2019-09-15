@@ -8,12 +8,17 @@ def start():
     scraper = Scraper()
     nezuko.remove_command('help')
 
+
+
     @nezuko.event
     async def on_ready():
         print("Logged in as")
         print(nezuko.user.name)
         print(nezuko.user.id)
 
+        await nezuko.change_presence(activity=discord.Activity(name='Pastries, use %help', type=3))
+
+    #Not working
     @nezuko.command()
     async def on_member_join(chn, member):
         print("eee")
