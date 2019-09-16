@@ -4,6 +4,18 @@ import math
 
 time = dt.datetime.now().time()
 
+def timediff(next_boss_time):
+    timenow = dt.datetime.now().time()
+    #a and b makes the time object into datetime objects so they can be delta-ed
+    a = dt.datetime.combine(dt.date.today(), timenow)
+    b = dt.datetime.combine(dt.date.today(), next_boss_time)
+    if int(a.hour - b.hour) > 0:
+        b = dt.datetime.combine(dt.date.today() + dt.timedelta(days=1), next_boss_time)
+    delta = b - a
+    print(delta.seconds)
+    return (delta.seconds.real)
+
+
 def get_token():
     try:
         with open('token.txt', 'r') as token_file:
@@ -15,29 +27,24 @@ def get_token():
 def nextboss():
     # Day of week = 0 - 6
     dayofweek = dt.datetime.today().weekday()
-
     # Time now
     timenow = dt.datetime.now().time()
-    boss=''
-    bosstime=''
     today = dayofweek
     is_found = False
     try:
         for i, value in enumerate(week[today]):
             if timenow < value.get_time():
                 is_found = True
-                boss = week[today][i].get_name()
-                bosstime = (week[today][i].get_time()).strftime('%H:%M')
+                boss = week[today][i]
                 break
         if is_found == False:
-            boss = week[today+1][0].get_name()
-            bosstime = (week[today+1][0].get_time()).strftime('%H:%M')
+            boss = week[today+1][0]
 
     except KeyError:
-        boss = week[0][0].get_name()
-        bosstime = (week[0][0].get_time()).strftime('%H:%M')
+        boss = week[0][0]
 
-    return 'The next boss is ' + boss + ' at ' + bosstime + 'hrs, GMT+8'
+    return boss
+
 
 def mpcheck(silver):
     return 'Without VP : ' + str(math.floor(float(silver)*0.65)) + '\nWith VP\t: ' + str(math.floor(float(silver)*0.845))
