@@ -8,6 +8,7 @@ The bot is my first Discord bot and my first side project that I have decided to
 - The bot is built with a 'World Boss' feature to respond to users querying about the next upcoming World Boss, as well as the ability to give a Discord role to users that wants to be reminded(mentioned) 30 minutes before a boss spawns
 
 ## Usage
+- Clone the repository and change the server_id to your Discord Server ID and run main.py (Optionally you could rename my BDOBot instance, and remove the auto-reply to send a .gif)
 - The bot is prefixed with the symbol '%'
 - Any command that exist within '%help' or any valid cook/craft item will retrieve the list of raw materials required
 - The bot is currently hardcoded to work in my guild's Discord Guild.
