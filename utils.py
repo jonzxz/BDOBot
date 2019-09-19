@@ -1,19 +1,25 @@
+from data import week
 import datetime as dt
-from Time import Time
-import math
 
-time = dt.datetime.now().time()
+"""
+utils contains individual functions that kind of do not fit anywhere(yet)
+it is not completely tidied up so things here are a little messy.
+"""
 
-def timediff(next_boss_time):
-    timenow = dt.datetime.now().time()
-    #a and b makes the time object into datetime objects so they can be delta-ed
-    a = dt.datetime.combine(dt.date.today(), timenow)
+
+# a and b makes the time object into datetime objects so they can be delta-ed
+# the condition is to test if current time int vs. next boss time int in hrs is larger
+# if it is then it represents that a day have passed, thus a day+1 delta is added
+
+def time_diff(next_boss_time):
+    time_now = dt.datetime.now().time()
+    a = dt.datetime.combine(dt.date.today(), time_now)
     b = dt.datetime.combine(dt.date.today(), next_boss_time)
     if int(a.hour - b.hour) > 0:
         b = dt.datetime.combine(dt.date.today() + dt.timedelta(days=1), next_boss_time)
     delta = b - a
-    print(delta.seconds)
-    return (delta.seconds.real)
+    #print(delta.seconds)
+    return delta.seconds.real
 
 
 def get_token():
@@ -24,20 +30,23 @@ def get_token():
     except FileNotFoundError:
         print("TOKEN NOT FOUND")
 
-def nextboss():
+
+# this function takes the current day and time and compare against the dict of Spawns
+# from data.weeks to retrieve the next Spawn by closest time from now and returns a Spawn object
+def next_boss():
     # Day of week = 0 - 6
     dayofweek = dt.datetime.today().weekday()
     # Time now
-    timenow = dt.datetime.now().time()
+    time_now = dt.datetime.now().time()
     today = dayofweek
     is_found = False
     try:
         for i, value in enumerate(week[today]):
-            if timenow < value.get_time():
+            if time_now < value.get_time():
                 is_found = True
                 boss = week[today][i]
                 break
-        if is_found == False:
+        if is_found is False:
             boss = week[today+1][0]
 
     except KeyError:
@@ -46,80 +55,4 @@ def nextboss():
     return boss
 
 
-def mpcheck(silver):
-    return 'Without VP : ' + str(math.floor(float(silver)*0.65)) + '\nWith VP\t: ' + str(math.floor(float(silver)*0.845))
 
-
-FAILSTACK = 'For Boss Armors/Weapons\n' \
-            'PRI: 16-20\n' \
-            'DUO: 21-30\n' \
-            'TRI: 30-44\n' \
-            'TET: 45 - 100\n' \
-            'PEN: 100+\n\n' \
-            'For Yellow Accessories\n' \
-            'PRI: 18\n' \
-            'DUO: 40\n' \
-            'TRI: 44\n' \
-            'TET: 80+\n' \
-            'PEN: 120+\n'
-
-week = {
-    0: [ #MONDAY
-        Time(time.replace(hour=1, minute=30, second=0), 'Kzarka'),
-        Time(time.replace(hour=7, minute=0, second=0), 'Garmoth'),
-        Time(time.replace(hour=15, minute=0, second=0), 'Nouver'),
-        Time(time.replace(hour=16, minute=0, second=0), 'Karanda'),
-        Time(time.replace(hour=20, minute=0, second=0), 'Kzarka'),
-        Time(time.replace(hour=23, minute=59, second=59), 'Offin')
-    ],
-    1: [ #TUESDAY
-        Time(time.replace(hour=1, minute=30, second=0), 'Nouver'),
-        Time(time.replace(hour=7, minute=0, second=0), 'Kutum'),
-        Time(time.replace(hour=11, minute=0, second=0), 'Kzarka'),
-        Time(time.replace(hour=15, minute=0, second=0), 'Kutum'),
-        Time(time.replace(hour=16, minute=0, second=0), 'Nouver'),
-        Time(time.replace(hour=20, minute=0, second=0), ['Muraka', 'Quint']),
-        Time(time.replace(hour=23, minute=59, second=59), ['Kutum', 'Nouver'])
-    ],
-    2: [ #WEDNESDAY
-        Time(time.replace(hour=1, minute=30, second=0), 'Kzarka'),
-        Time(time.replace(hour=11, minute=0, second=0), 'Kzarka'),
-        Time(time.replace(hour=15, minute=0, second=0), 'Karanda'),
-        Time(time.replace(hour=20, minute=0, second=0), 'Kutum'),
-        Time(time.replace(hour=23, minute=59, second=59), 'Offin')
-    ],
-    3: [ #THURSDAY
-        Time(time.replace(hour=1, minute=30, second=0), 'Kutum'),
-        Time(time.replace(hour=7, minute=0, second=0), 'Nouver'),
-        Time(time.replace(hour=11, minute=0, second=0), 'Kzarka'),
-        Time(time.replace(hour=15, minute=0, second=0), 'Kutum'),
-        Time(time.replace(hour=16, minute=0, second=0), ['Kzarka', 'Karanda']),
-        Time(time.replace(hour=20, minute=0, second=0), 'Garmoth'),
-        Time(time.replace(hour=23, minute=59, second=59), ['Kzarka', 'Nouver'])
-    ],
-    4: [ #FRIDAY
-        Time(time.replace(hour=1, minute=30, second=0), 'Kzarka'),
-        Time(time.replace(hour=7, minute=0, second=0), 'Karanda'),
-        Time(time.replace(hour=11, minute=0, second=0), 'Kutum'),
-        Time(time.replace(hour=15, minute=0, second=0), 'Kzarka'),
-        Time(time.replace(hour=20, minute=0, second=0), 'Nouver'),
-        Time(time.replace(hour=23, minute=59, second=59), 'Offin')
-    ],
-    5: [ #SATURDAY
-        Time(time.replace(hour=1, minute=30, second=0), 'Karanda'),
-        Time(time.replace(hour=7, minute=0, second=0), 'Nouver'),
-        Time(time.replace(hour=11, minute=0, second=0), ['Kutum', 'Kzarka']),
-        Time(time.replace(hour=15, minute=0, second=0), ['Karanda', 'Nouver']),
-        Time(time.replace(hour=16, minute=0, second=0), 'Garmoth'),
-        Time(time.replace(hour=20, minute=0, second=0), ['Muraka', 'Quint'])
-    ],
-    6: [ #SUNDAY
-        Time(time.replace(hour=1, minute=30, second=0), 'Karanda'),
-        Time(time.replace(hour=7, minute=0, second=0), 'Kutum'),
-        Time(time.replace(hour=11, minute=0, second=0), ['Karanda', 'Kzarka']),
-        Time(time.replace(hour=15, minute=0, second=0), ['Kutum', 'Nouver']),
-        Time(time.replace(hour=16, minute=0, second=0), 'Vell'),
-        Time(time.replace(hour=20, minute=0, second=0), 'Karanda'),
-        Time(time.replace(hour=23, minute=59, second=59), ['Kutum', 'Nouver'])
-    ]
-}
