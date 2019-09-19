@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
+
 class Scraper:
     # Constructor
     def __init__(self):
@@ -44,7 +45,6 @@ class Scraper:
             final.append(formatted)
         return final
 
-
     def print_ingredients(self, item):
         input = item.replace('%', '')
         if self.isdigit(input.split()[0]):
@@ -62,6 +62,7 @@ class Scraper:
         return number.replace("(", "").replace(")", "")
 
     # Function to clean up string in the format of bdodae's url format
+    # i'll have to rework this sooner or later
     def clean_word(self, word):
         return word.strip().replace(": ", "-").replace(" ", "_").replace("'", "")
 

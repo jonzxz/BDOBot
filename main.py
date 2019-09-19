@@ -1,3 +1,9 @@
-from Bot import start
+from Bot import BDOBot
 
-start()
+
+def main():
+    Nezuko = BDOBot()
+    Nezuko.run()
+
+
+main()
