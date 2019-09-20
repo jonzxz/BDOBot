@@ -34,7 +34,7 @@ class Boss(commands.Cog):
     @commands.Cog.listener()
     async def boss_reminder(self):
         await self.bot.wait_until_ready()
-        chn = self.bot.get_bot_channel()
+        chn = self.bot.get_channel(self.bot.get_bot_channelid())
 
         for role in self.bot.get_guild(self.bot.get_server_id()).roles:
             if role.name == 'Boss Hunter':
