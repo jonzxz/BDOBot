@@ -1,0 +1,8 @@
+.idea/
+Lib/
+Modules/__pycache__/
+Scripts/
+__pycache__/
+pyvenv.cfg
+tatus
+token.txt

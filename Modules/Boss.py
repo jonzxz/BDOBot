@@ -41,6 +41,7 @@ class Boss(commands.Cog):
                 bh = role
         while not self.bot.is_closed():
             if time_diff(next_boss().get_time()) == 1800:
+                #await chn.send('TEST MESSAGE\n```md\n' + next_boss().get_name() + ' will spawn in 30 minutes time!```')
                 await chn.send(bh.mention + '\n```md\n' + next_boss().get_name() + ' will spawn in 30 minutes time!```')
             await asyncio.sleep(1)
 
