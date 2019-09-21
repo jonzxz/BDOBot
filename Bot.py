@@ -20,7 +20,7 @@ class BDOBot(commands.Bot):
         self.loop.create_task(self.change_status())
         self.owner_id = 382152478810046464 # Jon
         self.server_id = 574641536214630401 # Pastries
-        self.bot_channel = 574646616489721887 #bot-channel
+        self.bot_channelid = 574646616489721887 #bot-channel
         self.startup_extensions = ['Modules.General', 'Modules.Market', 'Modules.Boss']
 
     async def change_status(self):
@@ -37,8 +37,8 @@ class BDOBot(commands.Bot):
     def get_owner_id(self):
         return self.owner_id
 
-    def get_bot_channel(self):
-        return self.bot_channel
+    def get_bot_channelid(self):
+        return self.bot_channelid
 
     def run(self):
         for ext in self.startup_extensions:

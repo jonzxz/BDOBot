@@ -34,13 +34,14 @@ class Boss(commands.Cog):
     @commands.Cog.listener()
     async def boss_reminder(self):
         await self.bot.wait_until_ready()
-        chn = self.bot.get_bot_channel()
+        chn = self.bot.get_channel(self.bot.get_bot_channelid())
 
         for role in self.bot.get_guild(self.bot.get_server_id()).roles:
             if role.name == 'Boss Hunter':
                 bh = role
         while not self.bot.is_closed():
             if time_diff(next_boss().get_time()) == 1800:
+                #await chn.send('TEST MESSAGE\n```md\n' + next_boss().get_name() + ' will spawn in 30 minutes time!```')
                 await chn.send(bh.mention + '\n```md\n' + next_boss().get_name() + ' will spawn in 30 minutes time!```')
             await asyncio.sleep(1)
 
