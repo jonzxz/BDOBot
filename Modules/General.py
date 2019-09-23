@@ -43,6 +43,10 @@ class General(commands.Cog):
     async def bug(self, ctx):
         await ctx.send('<@!{}> A bug have been discovered!'.format(self.bot.get_owner_id()))
 
+    @commands.command(name='hystria')
+    async def send_hyst_map(self, ctx):
+        await ctx.send(file=discord.File('hystria.png'))
+        
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.CommandNotFound):
