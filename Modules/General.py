@@ -22,9 +22,16 @@ class General(commands.Cog):
     async def on_member_join(self, member):
         ctx = member.guild.system_channel
         if ctx is not None:
-            await ctx.send('Welcome {0.mention} to Pastries!\n\n'
-                           'Head over to #rules and change your discord nickname to your family name.\n'
-                           'Enjoy your stay!'.format(member))
+            await ctx.send('Hello fresh dough {0.mention}, welcome to Pastries!\n'
+                           'We''d like you to answer the following short questions before proceeding!\n\n'
+                           '01. What are you looking for in a guild? i.e. Payouts, socializing, guidance in game\n\n'
+                           '02. Have you been in a guild before? If YES, what guild and why did you leave?\n\n'
+                           '03. What kind of player do you consider yourself as? PVE, PVP, Lifeskill-oriented, or well-balanced?\n\n'
+                           '04. OPTIONAL - What is your nationality?\n\n'
+                           'By answering these questions, you also acknowledge that Pastries is a chill international PVE/'
+                           'Lifeskill guild, we do not tolerate any form of unhealthy or immature behaviours when you are with us!\n\n'
+                           'Thank you for taking your time to answer the questions - Please mention Eclair when you are done\n'
+                           'We look forward to get to know you better!\n\n'.format(member))
 
     @commands.command(name='help')
     async def help_info(self, ctx):
@@ -46,7 +53,7 @@ class General(commands.Cog):
     @commands.command(name='hystria')
     async def send_hyst_map(self, ctx):
         await ctx.send(file=discord.File('hystria.png'))
-        
+
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.CommandNotFound):
