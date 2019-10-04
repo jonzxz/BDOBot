@@ -1,5 +1,5 @@
 from discord.ext import commands
-import discord
+import discord, asyncio
 
 """
 General class that is a derived class of commands.Cog
@@ -22,6 +22,7 @@ class General(commands.Cog):
     async def on_member_join(self, member):
         ctx = member.guild.system_channel
         if ctx is not None:
+            await asyncio.sleep(5)
             await ctx.send('Hello fresh dough {0.mention}, welcome to Pastries!\n'
                            'We would like you to answer the following short questions before proceeding!\n\n'
                            '01. What are you looking for in a guild? i.e. Payouts, socializing, guidance in game\n\n'
