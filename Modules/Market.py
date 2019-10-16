@@ -18,7 +18,7 @@ class Market(commands.Cog):
     # Function that returns a string message describing the profit
     def mp_check(self, silver):
         return 'Without VP : ' + str(math.floor(float(silver) * 0.65)) + '\nWith VP\t: '\
-               + str(math.floor(float(silver) * 0.845))
+               + str(math.floor(float(silver) * 0.845)) + '\nValues might be a little off depending on your family fame!'
 
 
 def setup(bot):

@@ -21,7 +21,7 @@ class BDOBot(commands.Bot):
         self.owner_id = 382152478810046464 # Jon
         self.server_id = 574641536214630401 # Pastries
         self.bot_channelid = 574646616489721887 #bot-channel
-        self.startup_extensions = ['Modules.General', 'Modules.Market', 'Modules.Boss']
+        self.startup_extensions = ['Modules.General', 'Modules.Market', 'Modules.Boss', 'Modules.Fun']
 
     async def change_status(self):
         await self.wait_until_ready()

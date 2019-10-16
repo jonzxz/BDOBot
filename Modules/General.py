@@ -45,7 +45,7 @@ class General(commands.Cog):
                       "%bosshunter - (un)register the Boss Hunter role. "
                       "Receive notifications 30 minutes before world boss!\n\n" \
                       "%mp - shows profit with(out) VP from selling in MP i.e. %mp 43500000\n\n"
-                      "%hystria - sends a map of hystria!" \
+                      "%hystria - sends a map of hystria!\n\n" \
                       "%bug <message>- reports a bug to Kagi\n\n```")
         await ctx.send(content)
 
