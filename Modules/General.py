@@ -21,8 +21,9 @@ class General(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         ctx = member.guild.system_channel
+        await asyncio.sleep(5)
         if ctx is not None:
-            await asyncio.sleep(5)
+            await asyncio.sleep(10)
             await ctx.send('Hello fresh dough {0.mention}, welcome to Pastries!\n'
                            'We would like you to answer the following short questions before proceeding!\n\n'
                            '01. What are you looking for in a guild? i.e. Payouts, socializing, guidance in game\n\n'
@@ -31,7 +32,7 @@ class General(commands.Cog):
                            '04. OPTIONAL - What is your nationality?\n\n'
                            'By answering these questions, you also acknowledge that Pastries is a chill international PVE/'
                            'Lifeskill guild, we do not tolerate any form of unhealthy or immature behaviours when you are with us!\n\n'
-                           'Thank you for answering the questions - Please mention Eclair when you are done\n'
+                           'Thank you for answering the questions - Please mention Crème brûlée when you are done\n'
                            'Meanwhile, head over to #rules to read our guild rules.\n'
                            'We look forward to get to know you better!\n\n'.format(member))
 
