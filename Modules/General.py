@@ -1,5 +1,6 @@
 from discord.ext import commands
 import discord, asyncio
+import re
 
 """
 General class that is a derived class of commands.Cog
@@ -48,6 +49,7 @@ class General(commands.Cog):
                       "%mp - shows profit with(out) VP from selling in MP i.e. %mp 43500000\n\n"
                       "%hystria - sends a map of hystria!\n\n"
                       "%meme - sends a random meme\n\n" \
+                      "%calc - built-in calculator, supports +, -, *, /, %\n\n"
                       "%bug <message>- reports a bug to Kagi\n\n```")
         await ctx.send(content)
 
@@ -58,6 +60,13 @@ class General(commands.Cog):
     @commands.command(name='hystria')
     async def send_hyst_map(self, ctx):
         await ctx.send(file=discord.File('hystria.png'))
+
+    @commands.command(name='calc')
+    async def calculate(self, ctx, msg):
+        try:
+            await ctx.send('```{0} is {1}```'.format(msg, str(eval(msg))))
+        except SyntaxError:
+            await ctx.send('```Sorry, I didn\'t get that, please use +, -, *, /, % only!```')
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
@@ -86,6 +95,7 @@ class General(commands.Cog):
             # await self.bot.process_commands(msg)
         else:
             return
+
 
 
 def setup(bot):
