@@ -74,6 +74,27 @@ class General(commands.Cog):
             return
         raise error
 
+    @commands.command(name='recipes')
+    async def get_recipes(self, ctx, type):
+        list_found = self.bot.scraper.get_all_recipes(type)
+        message = '\n'.join(list_found)
+        split_times = (len(message) // 2000) + 2
+        arr = []
+        arr.append(0)
+        for i in reversed(range(split_times)):
+            arr.append(len(list_found) // (i+1))
+        try:
+            for i in range(len(arr)):
+                print('\n'.join(list_found[arr[i]:arr[i+1]]))
+                print('\n=====\n')
+        except IndexError:
+            pass
+
+        #await ctx.send('\n'.join(list_found[0:10]))
+        #await ctx.send(self.bot.scraper.get_all_recipes(type))
+
+        #results = self.bot.scraper.get_all()
+
     @commands.Cog.listener()
     async def on_message(self, msg):
         if msg.author != self.bot.user:
