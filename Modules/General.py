@@ -37,20 +37,21 @@ class General(commands.Cog):
                            'Meanwhile, head over to #rules to read our guild rules.\n'
                            'We look forward to get to know you better!\n\n'.format(member))
 
+    content = str("```yaml\n" \
+                  "List of Commands\n----------------\n\n" \
+                  "%help - shows this message\n\n" \
+                  "%foodname - retrieves ingredients i.e. %5 beer\n\n" \
+                  "%wb - shows the upcoming world boss\n\n" \
+                  "%bosshunter - (un)register the Boss Hunter role. "
+                  "Receive notifications 30 minutes before world boss!\n\n" \
+                  "%mp - shows profit with(out) VP from selling in MP i.e. %mp 43500000\n\n" \
+                  "%hystria - sends a map of hystria!\n\n" \
+                  "%meme - sends a random meme\n\n" \
+                  "%calc - built-in calculator, supports +, -, *, /, %\n\n" \ 
+                  "%anime <title> - sends anime details\n\n" \ 
+                  "%bug <message> - reports a bug to Kagi\n\n```")
     @commands.command(name='help')
     async def help_info(self, ctx):
-        content = str("```yaml\n" \
-                      "List of Commands\n----------------\n\n" \
-                      "%help - shows this message\n\n" \
-                      "%foodname - retrieves ingredients i.e. %5 beer\n\n" \
-                      "%wb - shows the upcoming world boss\n\n" \
-                      "%bosshunter - (un)register the Boss Hunter role. "
-                      "Receive notifications 30 minutes before world boss!\n\n" \
-                      "%mp - shows profit with(out) VP from selling in MP i.e. %mp 43500000\n\n"
-                      "%hystria - sends a map of hystria!\n\n"
-                      "%meme - sends a random meme\n\n" \
-                      "%calc - built-in calculator, supports +, -, *, /, %\n\n"
-                      "%bug <message>- reports a bug to Kagi\n\n```")
         await ctx.send(content)
 
     @commands.command(name='bug')
