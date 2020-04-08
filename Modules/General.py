@@ -40,17 +40,18 @@ class General(commands.Cog):
     @commands.command(name='help')
     async def help_info(self, ctx):
         content = str("```yaml\n" \
-                      "List of Commands\n----------------\n\n" \
-                      "%help - shows this message\n\n" \
-                      "%foodname - retrieves ingredients i.e. %5 beer\n\n" \
-                      "%wb - shows the upcoming world boss\n\n" \
-                      "%bosshunter - (un)register the Boss Hunter role. "
-                      "Receive notifications 30 minutes before world boss!\n\n" \
-                      "%mp - shows profit with(out) VP from selling in MP i.e. %mp 43500000\n\n"
-                      "%hystria - sends a map of hystria!\n\n"
-                      "%meme - sends a random meme\n\n" \
-                      "%calc - built-in calculator, supports +, -, *, /, %\n\n"
-                      "%bug <message>- reports a bug to Kagi\n\n```")
+                  "List of Commands\n----------------\n\n" \
+                  "%help - shows this message\n\n" \
+                  "%foodname - retrieves ingredients i.e. %5 beer\n\n" \
+                  "%wb - shows the upcoming world boss\n\n" \
+                  "%bosshunter - (un)register the Boss Hunter role. "
+                  "Receive notifications 30 minutes before world boss!\n\n" \
+                  "%mp - shows profit with(out) VP from selling in MP i.e. %mp 43500000\n\n" \
+                  "%hystria - sends a map of hystria!\n\n" \
+                  "%meme - sends a random meme\n\n" \
+                  "%calc - built-in calculator, supports +, -, *, /, %\n\n" \
+                  "%anime <title> - sends anime details\n\n" \
+                  "%bug <message> - reports a bug to Kagi\n\n```")
         await ctx.send(content)
 
     @commands.command(name='bug')
@@ -73,6 +74,27 @@ class General(commands.Cog):
         if isinstance(error, commands.CommandNotFound):
             return
         raise error
+
+    @commands.command(name='recipes')
+    async def get_recipes(self, ctx, type):
+        list_found = self.bot.scraper.get_all_recipes(type)
+        message = '\n'.join(list_found)
+        split_times = (len(message) // 2000) + 2
+        arr = []
+        arr.append(0)
+        for i in reversed(range(split_times)):
+            arr.append(len(list_found) // (i+1))
+        try:
+            for i in range(len(arr)):
+                print('\n'.join(list_found[arr[i]:arr[i+1]]))
+                print('\n=====\n')
+        except IndexError:
+            pass
+
+        #await ctx.send('\n'.join(list_found[0:10]))
+        #await ctx.send(self.bot.scraper.get_all_recipes(type))
+
+        #results = self.bot.scraper.get_all()
 
     @commands.Cog.listener()
     async def on_message(self, msg):
