@@ -6,3 +6,5 @@ __pycache__/
 pyvenv.cfg
 tatus
 token.txt
+nohup.out
+awskp.pem
