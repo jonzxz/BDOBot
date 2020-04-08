@@ -9,61 +9,53 @@ failstack - still a work in progress, to be redone
 
 week = {
     0: [ #MONDAY
-        Spawn(dt.time(hour=1, minute=30, second=0), 'Kzarka'),
-        Spawn(dt.time(hour=7, minute=0, second=0), 'Garmoth'),
-        Spawn(dt.time(hour=15, minute=0, second=0), 'Nouver'),
-        Spawn(dt.time(hour=16, minute=0, second=0), 'Karanda'),
-        Spawn(dt.time(hour=20, minute=0, second=0), 'Kzarka'),
+        Spawn(dt.time(hour=1, minute=30, second=0), 'Kutum'),
+        Spawn(dt.time(hour=11, minute=0, second=0), ['Kzarka', 'Nouver']),
+        Spawn(dt.time(hour=15, minute=0, second=0), ['Kutum', 'Nouver']),
+        Spawn(dt.time(hour=20, minute=0, second=0), ['Karanda', 'Kzarka']),
         Spawn(dt.time(hour=23, minute=59, second=59), 'Offin')
     ],
     1: [ #TUESDAY
         Spawn(dt.time(hour=1, minute=30, second=0), 'Nouver'),
-        Spawn(dt.time(hour=7, minute=0, second=0), 'Kutum'),
-        Spawn(dt.time(hour=11, minute=0, second=0), 'Kzarka'),
-        Spawn(dt.time(hour=15, minute=0, second=0), 'Kutum'),
-        Spawn(dt.time(hour=16, minute=0, second=0), 'Nouver'),
+        Spawn(dt.time(hour=11, minute=0, second=0), ['Karanda', 'Kutum']),
+        Spawn(dt.time(hour=15, minute=0, second=0), ['Kutum', 'Kzarka']),
         Spawn(dt.time(hour=20, minute=0, second=0), ['Muraka', 'Quint']),
-        Spawn(dt.time(hour=23, minute=59, second=59), ['Kutum', 'Nouver'])
+        Spawn(dt.time(hour=23, minute=59, second=59), 'Garmoth')
     ],
     2: [ #WEDNESDAY
         Spawn(dt.time(hour=1, minute=30, second=0), 'Kzarka'),
-        Spawn(dt.time(hour=11, minute=0, second=0), 'Kzarka'),
-        Spawn(dt.time(hour=15, minute=0, second=0), 'Karanda'),
-        Spawn(dt.time(hour=20, minute=0, second=0), 'Kutum'),
+        Spawn(dt.time(hour=11, minute=0, second=0), ['Kzarka', 'Nouver']),
+        Spawn(dt.time(hour=15, minute=0, second=0), ['Karanda', 'Kzarka']),
+        Spawn(dt.time(hour=20, minute=0, second=0), ['Kzarka', 'Nouver']),
         Spawn(dt.time(hour=23, minute=59, second=59), 'Offin')
     ],
     3: [ #THURSDAY
         Spawn(dt.time(hour=1, minute=30, second=0), 'Kutum'),
-        Spawn(dt.time(hour=7, minute=0, second=0), 'Nouver'),
-        Spawn(dt.time(hour=11, minute=0, second=0), 'Kzarka'),
-        Spawn(dt.time(hour=15, minute=0, second=0), 'Kutum'),
-        Spawn(dt.time(hour=16, minute=0, second=0), ['Kzarka', 'Karanda']),
-        Spawn(dt.time(hour=20, minute=0, second=0), 'Garmoth'),
-        Spawn(dt.time(hour=23, minute=59, second=59), ['Kzarka', 'Nouver'])
+        Spawn(dt.time(hour=11, minute=0, second=0), ['Karanda', 'Kzarka']),
+        Spawn(dt.time(hour=15, minute=0, second=0), ['Kutum', 'Nouver']),
+        Spawn(dt.time(hour=20, minute=0, second=0), ['Karanda', 'Nouver']),
+        Spawn(dt.time(hour=23, minute=59, second=59), 'Garmoth')
     ],
     4: [ #FRIDAY
-        Spawn(dt.time(hour=1, minute=30, second=0), 'Kzarka'),
-        Spawn(dt.time(hour=7, minute=0, second=0), 'Karanda'),
-        Spawn(dt.time(hour=11, minute=0, second=0), 'Kutum'),
-        Spawn(dt.time(hour=15, minute=0, second=0), 'Kzarka'),
-        Spawn(dt.time(hour=20, minute=0, second=0), 'Nouver'),
+        Spawn(dt.time(hour=1, minute=30, second=0), 'Nouver'),
+        Spawn(dt.time(hour=11, minute=0, second=0), ['Kutum', 'Kzarka']),
+        Spawn(dt.time(hour=15, minute=0, second=0), ['Karanda', 'Kzarka']),
+        Spawn(dt.time(hour=20, minute=0, second=0), ['Kutum', 'Nouver']),
         Spawn(dt.time(hour=23, minute=59, second=59), 'Offin')
     ],
     5: [ #SATURDAY
         Spawn(dt.time(hour=1, minute=30, second=0), 'Karanda'),
-        Spawn(dt.time(hour=7, minute=0, second=0), 'Nouver'),
         Spawn(dt.time(hour=11, minute=0, second=0), ['Kutum', 'Kzarka']),
         Spawn(dt.time(hour=15, minute=0, second=0), ['Karanda', 'Nouver']),
         Spawn(dt.time(hour=16, minute=0, second=0), 'Garmoth'),
         Spawn(dt.time(hour=20, minute=0, second=0), ['Muraka', 'Quint'])
     ],
     6: [ #SUNDAY
-        Spawn(dt.time(hour=1, minute=30, second=0), 'Karanda'),
-        Spawn(dt.time(hour=7, minute=0, second=0), 'Kutum'),
-        Spawn(dt.time(hour=11, minute=0, second=0), ['Karanda', 'Kzarka']),
-        Spawn(dt.time(hour=15, minute=0, second=0), ['Kutum', 'Nouver']),
+        Spawn(dt.time(hour=1, minute=30, second=0), 'Kzarka'),
+        Spawn(dt.time(hour=11, minute=0, second=0), ['Karanda', 'Nouver']),
+        Spawn(dt.time(hour=15, minute=0, second=0), ['Karanda', 'Kutum']),
         Spawn(dt.time(hour=16, minute=0, second=0), 'Vell'),
-        Spawn(dt.time(hour=20, minute=0, second=0), 'Karanda'),
+        Spawn(dt.time(hour=20, minute=0, second=0), ['Karanda', 'Kzarka']),
         Spawn(dt.time(hour=23, minute=59, second=59), ['Kutum', 'Nouver'])
     ]
 }
