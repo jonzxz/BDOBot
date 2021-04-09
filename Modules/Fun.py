@@ -1,14 +1,17 @@
 from discord.ext import commands
 import praw, random, requests, re
 from bs4 import BeautifulSoup
-from mal import Anime
+from mal import Anime, AnimeSearch, Manga, MangaSearch
+from utils import get_praw_secrets
+import os
+from Logger import logger
 
 class Fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         # Reddit API id and secret is stored within my PRAW's praw.ini as [nezuko] entry.
-        self.reddit = praw.Reddit('nezuko',
-                                  user_agent='NezukoBot')
+        praw_secrets = get_praw_secrets()
+        self.reddit = praw.Reddit(user_agent='NezukoBot', client_id=praw_secrets[0], client_secret=praw_secrets[1])
         self.subreddits = ['memes', 'dank_meme', 'animemes']
 
     @commands.command(name='meme')
@@ -22,22 +25,18 @@ class Fun(commands.Cog):
         await ctx.send(submission.url)
 
     @commands.command(name='anime')
-    async def get_anime(self, ctx, name):
-        h = requests.utils.default_headers()
-        h.update({
-            'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0',
-        })
-
-        url = 'https://myanimelist.net/search/all?q=' + name.replace(' ', '%20')
-        r = requests.get(url, headers=h)
-        soup = BeautifulSoup(r.content, 'lxml')
-        div = soup.find_all("div", {"class": "information di-tc va-t pt4 pl8"})
-        a = (div[0].find("a", href=True))
-        raw_id = str(a['id'])
-        id = (re.split('[^0-9]', raw_id)[-1])
-
-        anime = Anime(id)
+    async def get_anime(self, ctx, *args):
+        logger.info("anime name: %s passed in", " ".join(args))
+        anime_search = AnimeSearch(" ".join(args))
+        anime = Anime((anime_search.results[0]).mal_id)
         await ctx.send('```{0}```\n```{1}```\n{2}'.format(anime.title, anime.synopsis, anime.image_url))
+
+    @commands.command(name='manga')
+    async def get_manga(self, ctx, *args):
+        logger.info("manga name: %s passed in", " ".join(args))
+        manga_search = MangaSearch(" ".join(args))
+        manga = Manga((manga_search.results[0]).mal_id)
+        await ctx.send('```{0}```\n```{1}```\n{2}'.format(manga.title, manga.synopsis, manga.image_url))
 
 
 def setup(bot):

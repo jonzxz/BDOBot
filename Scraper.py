@@ -71,17 +71,3 @@ class Scraper:
 
     def remove_number(self, word):
         return ' '.join(word.split(' ')[:-1])
-
-
-    def get_all_recipes(self, type):
-        url = "https://www.bdodae.com/items/index.php?cat=" + type
-        r = requests.get(url, headers=self.headers)
-        soup = BeautifulSoup(r.content, 'lxml')
-        full_list = []
-        all_items = soup.find_all("div", {"class" : "sort_cooking"})
-        for item in all_items:
-            div_name = item.find_all("div", {"class": "link_title"})
-            for name in div_name:
-                full_list.append(name.find("a").contents[0])
-        return full_list
-        #return '```{}```'.format(full_list)

@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord, asyncio
 import re
+from Logger import logger
 
 """
 General class that is a derived class of commands.Cog
@@ -15,16 +16,14 @@ class General(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("Logged in as")
-        print(self.bot.user.name)
-        print(self.bot.user.id)
+        logger.info("Starting up bot with ID: %s, Name: %s", self.bot.user.id, self.bot.user.name)
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
+        logger.info("someone new has joined, sleeping for 25s before sending welcome")
         ctx = member.guild.system_channel
-        await asyncio.sleep(5)
+        await asyncio.sleep(25)
         if ctx is not None:
-            await asyncio.sleep(10)
             await ctx.send('Hello fresh dough {0.mention}, welcome to Pastries!\n'
                            'We would like you to answer the following short questions before proceeding!\n\n'
                            '01. What are you looking for in a guild? i.e. Payouts, socializing, guidance in game\n\n'
@@ -60,7 +59,7 @@ class General(commands.Cog):
 
     @commands.command(name='hystria')
     async def send_hyst_map(self, ctx):
-        await ctx.send(file=discord.File('hystria.png'))
+        await ctx.send(file=discord.File('assets/hystria.png'))
 
     @commands.command(name='calc')
     async def calculate(self, ctx, msg):
@@ -75,27 +74,6 @@ class General(commands.Cog):
             return
         raise error
 
-    @commands.command(name='recipes')
-    async def get_recipes(self, ctx, type):
-        list_found = self.bot.scraper.get_all_recipes(type)
-        message = '\n'.join(list_found)
-        split_times = (len(message) // 2000) + 2
-        arr = []
-        arr.append(0)
-        for i in reversed(range(split_times)):
-            arr.append(len(list_found) // (i+1))
-        try:
-            for i in range(len(arr)):
-                print('\n'.join(list_found[arr[i]:arr[i+1]]))
-                print('\n=====\n')
-        except IndexError:
-            pass
-
-        #await ctx.send('\n'.join(list_found[0:10]))
-        #await ctx.send(self.bot.scraper.get_all_recipes(type))
-
-        #results = self.bot.scraper.get_all()
-
     @commands.Cog.listener()
     async def on_message(self, msg):
         if msg.author != self.bot.user:
@@ -105,9 +83,9 @@ class General(commands.Cog):
             if 'hello' in content:
                 await channel.send('Hello {0.mention}!'.format(msg.author))
             if 'nezuko' in content:
-                await channel.send(file=discord.File('nezuko.gif'))
+                await channel.send(file=discord.File('assets/nezuko.gif'))
             elif content.startswith('%') and ctx.valid is False:
-                results = self.bot.scraper.print_ingredients(content)
+                results = self.bot.get_scraper().print_ingredients(content)
                 if not results:
                     reply = "No results or commands was retrieved." \
                             "\nPerhaps you wanna use '%help'?"
