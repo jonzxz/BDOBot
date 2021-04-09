@@ -9,3 +9,6 @@ token.txt
 nohup.out
 awskp.pem
 bdobot-venv
+praw_secrets.txt
+*.key
+*.ini

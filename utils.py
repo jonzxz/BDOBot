@@ -42,8 +42,8 @@ def get_token():
 def get_global_configs():
     logger.info("initializing global configs")
     OWNER_ID = 382152478810046464 # Jon
-    SERVER_ID = 620980624525754399 #TESTBED
-    # SERVER_ID = 574641536214630401 # Pastries
+    # SERVER_ID = 620980624525754399 #TESTBED
+    SERVER_ID = 574641536214630401 # Pastries
     return [OWNER_ID, SERVER_ID]
 
 def get_startup_modules():
