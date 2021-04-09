@@ -23,11 +23,11 @@ week = {
         Spawn(dt.time(hour=23, minute=59, second=59), 'Garmoth')
     ],
     2: [ #WEDNESDAY
-        Spawn(dt.time(hour=1, minute=30, second=0), 'Kzarka'),
-        Spawn(dt.time(hour=11, minute=0, second=0), ['Kzarka', 'Nouver']),
+        Spawn(dt.time(hour=1, minute=30, second=0), ['Kzarka', 'Offin']),
+        Spawn(dt.time(hour=11, minute=0, second=0), ['Nouver', 'Kutum']),
         Spawn(dt.time(hour=15, minute=0, second=0), ['Karanda', 'Kzarka']),
-        Spawn(dt.time(hour=20, minute=0, second=0), ['Kzarka', 'Nouver']),
-        Spawn(dt.time(hour=23, minute=59, second=59), 'Offin')
+        Spawn(dt.time(hour=20, minute=0, second=0), ['Kutum', 'Nouver']),
+        Spawn(dt.time(hour=23, minute=59, second=59), 'Vell')
     ],
     3: [ #THURSDAY
         Spawn(dt.time(hour=1, minute=30, second=0), 'Kutum'),

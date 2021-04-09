@@ -18,7 +18,7 @@ def time_diff(next_boss_time):
     if int(a.hour - b.hour) > 0:
         b = dt.datetime.combine(dt.date.today() + dt.timedelta(days=1), next_boss_time)
     delta = b - a
-    print(delta.seconds)
+    # print(delta.seconds)
     return delta.seconds.real
 
 
@@ -53,6 +53,3 @@ def next_boss():
         boss = week[0][0]
 
     return boss
-
-
-

@@ -14,22 +14,27 @@ here so that the bot can work anywhere outside from the current server_id server
 
 class BDOBot(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix='%')
+        intents = discord.Intents.default()
+        intents.members = True
+        intents.reactions = True
+        super().__init__(command_prefix='%', intents=intents)
         self.scraper = Scraper()
         self.remove_command('help')
         self.loop.create_task(self.change_status())
         self.owner_id = 382152478810046464 # Jon
         self.server_id = 574641536214630401 # Pastries
         self.bot_channelid = 574646616489721887 #bot-channel
+        # self.startup_extensions = ['Modules.General', 'Modules.Market', 'Modules.Boss', 'Modules.Fun']
         self.startup_extensions = ['Modules.General', 'Modules.Market', 'Modules.Boss', 'Modules.Fun']
+
 
     async def change_status(self):
         await self.wait_until_ready()
         while True:
             await self.change_presence(activity=discord.Activity(name='Pastries', type=3))
-            await asyncio.sleep(10)
+            await asyncio.sleep(20)
             await self.change_presence(activity=discord.Activity(name='use %help', type=1))
-            await asyncio.sleep(10)
+            await asyncio.sleep(20)
 
     def get_server_id(self):
         return self.server_id
@@ -47,6 +52,3 @@ class BDOBot(commands.Bot):
             except Exception as e:
                 print(f'An extension failed to run - {ext}: {e}')
         super().run(get_token(), reconnect=True)
-
-
-
