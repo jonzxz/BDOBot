@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 aiohttp==3.6.3
+=======
+aiohttp==3.7.4
+>>>>>>> c855b989e805c6b7a9d303cfb121c921ef858d45
 altgraph==0.16.1
 async-timeout==3.0.1
 attrs==19.3.0
