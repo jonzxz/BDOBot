@@ -5,6 +5,7 @@ from mal import Anime, AnimeSearch, Manga, MangaSearch
 from utils import get_praw_secrets
 import os
 from Logger import logger
+from discord.utils import get
 
 class Fun(commands.Cog):
     def __init__(self, bot):
@@ -27,17 +28,37 @@ class Fun(commands.Cog):
     @commands.command(name='anime')
     async def get_anime(self, ctx, *args):
         logger.info("anime name: %s passed in", " ".join(args))
-        anime_search = AnimeSearch(" ".join(args))
-        anime = Anime((anime_search.results[0]).mal_id)
-        await ctx.send('```{0}```\n```{1}```\n{2}'.format(anime.title, anime.synopsis, anime.image_url))
+        try:
+            anime_search = AnimeSearch(" ".join(args))
+            anime = Anime((anime_search.results[0]).mal_id)
+            await ctx.send('```{0}```\n```{1}```\n{2}'.format(anime.title, anime.synopsis, anime.image_url))
+        except Exception:
+            logger.error("unable to retrieve anime name: %s", ' '.join(args))
+            await ctx.send('An error occured while retrieving anime {0} :('.format(' '.join(args)))
 
     @commands.command(name='manga')
     async def get_manga(self, ctx, *args):
         logger.info("manga name: %s passed in", " ".join(args))
-        manga_search = MangaSearch(" ".join(args))
-        manga = Manga((manga_search.results[0]).mal_id)
-        await ctx.send('```{0}```\n```{1}```\n{2}'.format(manga.title, manga.synopsis, manga.image_url))
+        try:
+            manga_search = MangaSearch(" ".join(args))
+            manga = Manga((manga_search.results[0]).mal_id)
+            await ctx.send('```{0}```\n```{1}```\n{2}'.format(manga.title, manga.synopsis, manga.image_url))
+        except Exception:
+            logger.error("unable to retrieve manga name: %s", ' '.join(args))
+            await ctx.send('An error occured while trieving manga {0} :('.format(' '.join(args)))
 
+    @commands.command(name='popcorn')
+    async def set_bh_role(self, message):
+        POPCORN_ID = 707958341539856404
+        role = get(message.guild.roles, id=POPCORN_ID)
+        member = message.author
+        chn = message.channel
+        if role not in member.roles:
+            await member.add_roles(role)
+            await chn.send("{0.author.mention} is now registered as a Caramel Popcorn!".format(message))
+        elif role in member.roles:
+            await member.remove_roles(role)
+            await chn.send("{0.author.mention} have resigned as a Caramel Popcorn!".format(message))
 
 def setup(bot):
     bot.add_cog(Fun(bot))
