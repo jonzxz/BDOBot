@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-aiohttp==3.6.3
-=======
 aiohttp==3.7.4
->>>>>>> c855b989e805c6b7a9d303cfb121c921ef858d45
 altgraph==0.16.1
 async-timeout==3.0.1
 attrs==19.3.0
@@ -11,9 +7,11 @@ bs4==0.0.1
 certifi==2019.9.11
 chardet==3.0.4
 discord.py==1.5.1
+emoji==1.2.0
 future==0.17.1
 idna==2.8
 lxml==4.6.3
+mal-api==0.4.0
 MouseInfo==0.0.4
 multidict==4.5.2
 pefile==2019.4.18
@@ -35,6 +33,7 @@ schedule==0.6.0
 selenium==3.141.0
 six==1.12.0
 soupsieve==1.9.5
+typing-extensions==3.7.4.3
 update-checker==0.16
 urllib3==1.25.6
 websocket-client==0.56.0
