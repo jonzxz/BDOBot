@@ -22,6 +22,7 @@ class BDOBot(commands.Bot):
         GLOBAL_CONFIGS = get_global_configs()
         self.__owner_id = GLOBAL_CONFIGS[0]
         self.__server_id = GLOBAL_CONFIGS[1]
+        self.__is_recruit_open = None
 
         self.__bot_channelid = 574646616489721887 #bot-channel
         self.startup_extensions = get_startup_modules()
@@ -45,6 +46,12 @@ class BDOBot(commands.Bot):
 
     def get_scraper(self):
         return self.__scraper
+
+    def get_recruit_open(self):
+        return self.__is_recruit_open
+
+    def set_recruit_open(self, bool):
+        self.__is_recruit_open = bool
 
     def run(self):
         for ext in self.startup_extensions:
