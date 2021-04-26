@@ -17,7 +17,8 @@ class Boss(commands.Cog):
 
     @commands.command(name='bosshunter')
     async def set_bh_role(self, message):
-        role = get(message.guild.roles, name='Boss Hunter')
+        BOSSHUNTER_ID = 623100796833234955
+        role = get(message.guild.roles, id=BOSSHUNTER_ID)
         member = message.author
         chn = message.channel
         if role not in member.roles:
