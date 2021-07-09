@@ -3,6 +3,7 @@ from utils import next_boss, time_diff
 # from utils import next_boss
 import asyncio
 from discord.utils import get
+from Logger import logger
 
 """
 Boss class which is a derived class of Cogs
@@ -12,6 +13,7 @@ Currently there is only a (un)set Boss Hunter role, next boss and boss reminder 
 
 class Boss(commands.Cog):
     def __init__(self, bot):
+        logger.info("starting up Boss Cog")
         self.bot = bot
         self.bot.loop.create_task(self.boss_reminder())
 
@@ -43,7 +45,7 @@ class Boss(commands.Cog):
                 bh = role
         while not self.bot.is_closed():
             if time_diff(next_boss().get_time()) == 1800:
-                #await chn.send('TEST MESSAGE\n```md\n' + next_boss().get_name() + ' will spawn in 30 minutes time!```')
+                logger.info('sending boss notification for ' + next_boss().get_name())
                 await chn.send(bh.mention + '\n```md\n' + next_boss().get_name() + ' will spawn in 30 minutes time!```')
             await asyncio.sleep(1)
 

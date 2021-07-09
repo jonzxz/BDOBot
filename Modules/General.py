@@ -12,6 +12,7 @@ Some of these commands will probably be shifted to another Cog when more feature
 
 class General(commands.Cog):
     def __init__(self, bot):
+        logger.info("starting up General Cog")
         self.bot = bot
         self.react_chosen = None
 
@@ -26,17 +27,19 @@ class General(commands.Cog):
         await asyncio.sleep(25)
         if ctx is not None:
             if self.bot.get_recruit_open() == True or self.bot.get_recruit_open() == None:
-                await ctx.send('Hello fresh dough {0.mention}, welcome to Pastries!\n'
+                about_us = self.bot.get_channel(575282309947850822)
+                await ctx.send(file=discord.File('assets/poster.png'))
+                await ctx.send(':sparkles::pretzel:**Hello fresh dough {0.mention}, welcome to Pastries!**:sparkles::pretzel:\n'
                                'We would like you to answer the following short questions before proceeding!\n\n'
-                               '01. What are you looking for in a guild? i.e. Payouts, socializing, guidance in game\n\n'
-                               '02. Have you been in a guild before? If YES, what guild and why did you leave?\n\n'
-                               '03. What kind of player do you consider yourself as? PVE, PVP, Lifeskill-oriented, or well-balanced?\n\n'
-                               '04. OPTIONAL - What is your nationality?\n\n'
-                               'By answering these questions, you also acknowledge that Pastries is a chill international PVE/'
-                               'Lifeskill guild, we do not tolerate any form of unhealthy or immature behaviours when you are with us!\n\n'
-                               'Thank you for answering the questions - Please mention Crème brûlée when you are done\n'
-                               'Meanwhile, head over to #rules to read our guild rules.\n'
-                               'We look forward to get to know you better!\n\n'.format(member))
+                               '> **01. What are you looking for in a guild?** *i.e. Payouts, socializing, guidance in game*\n\n'
+                               '> **02. Have you been in a guild before?** *If YES, what guild and why did you leave?*\n\n'
+                               '> **03. What kind of player do you consider yourself as?** *PVE, PVP, Lifeskill-oriented, or an all-rounded?*\n\n'
+                               '> **04. OPTIONAL - What is your nationality?** *We got people from MY/SG/INA/PH and a few more other countries inside!*\n\n'
+                               ':cake:By answering these questions, you also acknowledge that **Pastries is a chill International PVX/Lifeskill guild**\n'
+                               ':cake:**We do not tolerate any form of unhealthy or immature behaviours when you are with us!**\n'
+                               ':cake:Please head over to {1.mention} for more info and our guild rules!\n\n'
+                               '**Thank you for answering the questions - Please mention Crème brûlée when you are done**\n'
+                               '*We look forward to get to know you better!*\n\n'.format(member, about_us))
             else:
                 await ctx.send(':pretzel:**Welcome to Pastries!**:pretzel:\n\n' \
                                 'Hello {0.mention}, Thank you for visiting our discord!\n' \
@@ -61,7 +64,9 @@ class General(commands.Cog):
                   "%calc - built-in calculator, supports +, -, *, /, %\n\n" \
                   "%anime <title> - retrieves anime information from MyAnimeList\n\n" \
                   "%manga <title> - retrieves manga information from MyAnimeList\n\n" \
-                  "%recruit - Update recruitment status (Crème brûlées only!)\n\n```" \
+                  "%recruit - Update recruitment status (Crème brûlées only!)\n\n" \
+                  "%khan - Update Khan announcement status (Crème brûlées only!)\n\n" \
+                  "%war - Update Node War announcement status (Crème brûlées only!)\n\n" \
                   "%bug <message> - reports a bug to Kagi\n\n```")
         await ctx.send(content)
 
@@ -73,6 +78,10 @@ class General(commands.Cog):
     async def send_hyst_map(self, ctx):
         await ctx.send(file=discord.File('assets/hystria.png'))
 
+    @commands.command(name='sycraia')
+    async def send_hyst_map(self, ctx):
+        await ctx.send(file=discord.File('assets/sycraia.png'))
+
     @commands.command(name='calc')
     async def calculate(self, ctx, msg):
         try:
@@ -80,20 +89,28 @@ class General(commands.Cog):
         except SyntaxError:
             await ctx.send('```Sorry, I didn\'t get that, please use +, -, *, /, % only!```')
 
-    # @commands.command(name='test')
+    # @commands.command(name='whalecome')
     # async def test_feature(self, ctx):
-    #     embed = discord.Embed()
-    #     embed.description = '[test](https://tormag.ezpz.work/download.php?magnet_id=7287&magnet_key=gB7fhEedeL)'
-    #     await ctx.send(embed=embed)
-    #
+    #     await ctx.send(':sparkles::pretzel:**Hello fresh dough {0}, welcome to Pastries!**:sparkles::pretzel:\n'
+    #                    'We would like you to answer the following short questions before proceeding!\n\n'
+    #                    '> **01. What are you looking for in a guild?** *i.e. Payouts, socializing, guidance in game*\n\n'
+    #                    '> **02. Have you been in a guild before?** *If YES, what guild and why did you leave?*\n\n'
+    #                    '> **03. What kind of player do you consider yourself as?** *PVE, PVP, Lifeskill-oriented, or an all-rounded?*\n\n'
+    #                    '> **04. OPTIONAL - What is your nationality?** *We got people from MY/SG/INA/PH and a few more other countries inside!*\n\n'
+    #                    ':cake:By answering these questions, you also acknowledge that **Pastries is a chill International PVX/Lifeskill guild**\n'
+    #                    ':cake:**We do not tolerate any form of unhealthy or immature behaviours when you are with us!**\n'
+    #                    ':cake:Please head over to #about-us for more info and our guild rules!\n\n'
+    #                    '**Thank you for answering the questions - Please mention Crème brûlée when you are done**\n'
+    #                    '*We look forward to get to know you better!*\n\n'.format("kagi"), file=discord.File('assets/poster.png'))
+
+
     @commands.command(name='recruit')
     async def recruit(self, message):
-        OFFICER_ID = 574641817505497106
         author_roles = message.author.roles
         chn = message.channel
         self.react_chosen = None
 
-        if OFFICER_ID in [role.id for role in author_roles]:
+        if self.bot.get_officer_id() in [role.id for role in author_roles]:
             status_emoji = '\U0001f35e'
             open_emoji = '\U00002b55'
             close_emoji = '\U0000274c'

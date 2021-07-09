@@ -9,6 +9,7 @@ from discord.utils import get
 
 class Fun(commands.Cog):
     def __init__(self, bot):
+        logger.info("starting up Fun Cog")
         self.bot = bot
         # Reddit API id and secret is stored within my PRAW's praw.ini as [nezuko] entry.
         praw_secrets = get_praw_secrets()

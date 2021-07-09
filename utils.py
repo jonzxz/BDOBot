@@ -52,8 +52,9 @@ def get_startup_modules():
     MODULES_MARKET = 'Modules.Market'
     MODULES_BOSS = 'Modules.Boss'
     MODULES_FUN = 'Modules.Fun'
+    MODULES_ANNOUNCE = 'Modules.Announcement'
 
-    return [MODULES_GENERAL, MODULES_MARKET, MODULES_BOSS, MODULES_FUN]
+    return [MODULES_GENERAL, MODULES_MARKET, MODULES_BOSS, MODULES_FUN, MODULES_ANNOUNCE]
 
 def get_praw_secrets():
     logger.info("retrieving PRAW ID and secret")

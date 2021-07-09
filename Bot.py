@@ -22,9 +22,15 @@ class BDOBot(commands.Bot):
         GLOBAL_CONFIGS = get_global_configs()
         self.__owner_id = GLOBAL_CONFIGS[0]
         self.__server_id = GLOBAL_CONFIGS[1]
-        self.__is_recruit_open = None
+        self.__is_recruit_open = True
+        self.__is_khan_active = True
+        self.__is_war_active = True
+        self.__next_khan_annc = None
+        self.__next_war_annc = None
 
+        self.__OFFICER_ID = 574641817505497106
         self.__bot_channelid = 574646616489721887 #bot-channel
+        self.__menu_channelid = 574650178183626771 #menu-board
         self.startup_extensions = get_startup_modules()
 
     async def change_status(self):
@@ -44,6 +50,9 @@ class BDOBot(commands.Bot):
     def get_bot_channelid(self):
         return self.__bot_channelid
 
+    def get_menu_channelid(self):
+        return self.__menu_channelid
+
     def get_scraper(self):
         return self.__scraper
 
@@ -52,6 +61,33 @@ class BDOBot(commands.Bot):
 
     def set_recruit_open(self, bool):
         self.__is_recruit_open = bool
+
+    def get_khan_active(self):
+        return self.__is_khan_active
+
+    def set_khan_active(self, bool):
+        self.__is_khan_active = bool
+
+    def get_war_active(self):
+        return self.__is_war_active
+
+    def set_war_active(self, bool):
+        self.__is_war_active = bool
+
+    def get_next_khan_annc(self):
+        return self.__next_khan_annc
+
+    def set_next_khan_annc(self, dt):
+        self.__next_khan_annc = dt
+
+    def get_next_war_annc(self):
+        return self.__next_war_annc
+
+    def set_next_war_annc(self, dt):
+        self.__next_war_annc = dt
+
+    def get_officer_id(self):
+        return self.__OFFICER_ID
 
     def run(self):
         for ext in self.startup_extensions:
