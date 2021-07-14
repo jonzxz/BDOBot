@@ -21,6 +21,13 @@ class General(commands.Cog):
         logger.info("Starting up bot with ID: %s, Name: %s", self.bot.user.id, self.bot.user.name)
 
     @commands.Cog.listener()
+    async def on_member_remove(self, member):
+        logger.info("someone has left the server, sending notice..")
+        ctx = member.guild.system_channel
+        if ctx is not None:
+            await ctx.send("{0} has left the server.".format(member.display_name))
+
+    @commands.Cog.listener()
     async def on_member_join(self, member):
         logger.info("someone new has joined, sleeping for 25s before sending welcome")
         ctx = member.guild.system_channel
