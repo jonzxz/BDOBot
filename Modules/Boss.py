@@ -1,7 +1,7 @@
 from discord.ext import commands
 from utils import next_boss, time_diff
 # from utils import next_boss
-import asyncio
+import asyncio, Constants
 from discord.utils import get
 from Logger import logger
 
@@ -38,7 +38,7 @@ class Boss(commands.Cog):
     @commands.Cog.listener()
     async def boss_reminder(self):
         await self.bot.wait_until_ready()
-        chn = self.bot.get_channel(self.bot.get_bot_channelid())
+        chn = self.bot.get_channel(Constants.ID_CHN_BOT_CHN)
 
         for role in self.bot.get_guild(self.bot.get_server_id()).roles:
             if role.name == 'Boss Hunter':

@@ -1,5 +1,5 @@
 from discord.ext import commands
-import math
+import math, Constants
 from Logger import logger
 
 """
@@ -7,13 +7,12 @@ Market class that extends commands.Cog - this class currently only has a single 
 that calculates the profit earned with(out) Value Pack
 """
 
-
 class Market(commands.Cog):
     def __init__(self, bot):
-        logger.info("starting up Market Cog")
+        logger.info(Constants.COG_STARTUP, Constants.MARKET)
         self.bot = bot
 
-    @commands.command(name='mp')
+    @commands.command(name=Constants.MARKETPLACE_L)
     async def check_profit(self, ctx, silver):
         await ctx.send('```fix\n' + (self.mp_check(silver) + '```'))
 
