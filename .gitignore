@@ -1,14 +1,11 @@
-.idea/
 Lib/
 Modules/__pycache__/
 Scripts/
 __pycache__/
-pyvenv.cfg
-tatus
 token.txt
 nohup.out
-awskp.pem
 bdobot-venv
 praw_secrets.txt
 *.key
 *.ini
+.env
