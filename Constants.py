@@ -90,7 +90,7 @@ FILE_READ_MODE = 'r'
 STATUS_LOOP_TIME_SECONDS = 20
 REACTION_TIMEOUT_SECONDS = 7
 PREFIX_PERCENT = "%"
-MEME_SUBREDDITS = ['memes', 'dank_meme', 'animemes']
+MEME_SUBREDDITS = ['memes', 'animemes', 'meme', 'goodanimemes']
 BOSS_NOTIFICATION_NOTICE_SECONDS = 1800
 
 MODULES_GENERAL = 'Modules.General'

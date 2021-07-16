@@ -137,7 +137,7 @@ class General(commands.Cog):
                     reply = Constants.MSG_INVALID_COMD
                 else:
                     reply = Constants.NEW_LINE.join(results)
-                await channel.send('```' + reply + '```')
+                await chn.send('```' + reply + '```')
         else:
             return
 

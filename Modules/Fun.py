@@ -1,9 +1,8 @@
 from discord.ext import commands
-import praw, random, requests, re, Constants
+import asyncpraw, random, requests, re, Constants, os
 from bs4 import BeautifulSoup
 from mal import Anime, AnimeSearch, Manga, MangaSearch
 from utils import get_praw_secrets
-import os
 from Logger import logger
 from discord.utils import get
 
@@ -13,18 +12,17 @@ class Fun(commands.Cog):
         self.bot = bot
         # Reddit API id and secret is stored within my PRAW's praw.ini as [nezuko] entry.
         praw_secrets = get_praw_secrets()
-        self.reddit = praw.Reddit(user_agent=Constants.NEZUKO_BOT, client_id=praw_secrets[0], client_secret=praw_secrets[1])
+        self.reddit = asyncpraw.Reddit(user_agent=Constants.NEZUKO_BOT, client_id=praw_secrets[0], client_secret=praw_secrets[1])
         self.subreddits = Constants.MEME_SUBREDDITS
 
     @commands.command(name=Constants.MEME_L)
     async def get_meme(self, ctx):
         sub_to_pick = random.randint(Constants.ZERO, Constants.TWO)
         post_to_pick = random.randint(Constants.ONE, Constants.TEN)
-        submissions = self.reddit.subreddit(self.subreddits[sub_to_pick]).hot()
-        for i in range(0, post_to_pick):
-            submission = next(x for x in submissions if not x.stickied)
-
-        await ctx.send(submission.url)
+        subreddit_chosen = await self.reddit.subreddit(self.subreddits[sub_to_pick])
+        chosen_submissions = [sub async for sub in subreddit_chosen.hot(limit=15) if not sub.stickied]
+        chosen_submission = chosen_submissions[post_to_pick]
+        await ctx.send(chosen_submission.url)
 
     @commands.command(name=Constants.ANIME_L)
     async def get_anime(self, ctx, *args):
