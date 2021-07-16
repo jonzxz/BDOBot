@@ -17,6 +17,12 @@ UPCOMING_ANNC = "upcoming % announced happening at %s"
 INACTIVE_ANNOUNCER = "%s announcement INACTIVE, no message sent"
 FUN_QUERY_SENT = "%s name passed in: %s"
 FUN_QUERY_ERR = "unable to retrieve %s name: %s"
+BOSS_NOTIFICATION_SENT = "sending boss notification for %s"
+RETRIEVE_PRAW_CONFIG = "retrieving PRAW ID and secret"
+ENV_VAR_NOT_FOUND = "%s env var not found, attempting to read %s"
+FILE_NOT_FOUND = "%s not found"
+RETRIEVE_DISCORD_CONFIG = "retrieving Discord token"
+CONFIG_FILE_RETRIEVE_SUCCESS = "%s params retrieved from %s"
 
 # NUMBER / FORMATS
 ZERO = 0
@@ -27,6 +33,7 @@ EIGHTEEN = 18
 TWENTY_ONE = 21
 DT_FORMAT_ANNC = '%d/%m/%Y, %H:%M:%S'
 DT_FORMAT_INVITE = 'dddd DD MMM YYYY hh:mm A'
+DT_FORMAT_WB = '%H:%M'
 
 #COMMANDS
 HELP_L = 'help'
@@ -45,8 +52,10 @@ ANIME_L = "anime"
 MANGA_L = "manga"
 POPCORN_L = "popcorn"
 MARKETPLACE_L = "mp"
+WB_L = "wb"
+BOSSHUNTER_L = "bosshunter"
 
-# WORDS
+# STRING
 PASTRIES = "Pastries"
 NEW_LINE = '\n'
 RECRUIT = "Recruit"
@@ -68,20 +77,41 @@ GENERAL = "General"
 ANNOUNCEMENT = "Announcement"
 FUN = "Fun"
 MARKET = "Market"
+BOSS = "Boss"
+BOSS_HUNTER = "Boss Hunter"
+PRAW_CLIENT_ID = "PRAW_CLIENT_ID"
+PRAW_CLIENT_SECRET = "PRAW_CLIENT_SECRET"
+DISCORD_TOKEN = "DISCORD_TOKEN"
+DISCORD_TOKEN_FILE = "token.txt"
+PRAW_SECRET_FILE = "praw_secrets.txt"
+FILE_READ_MODE = 'r'
 
 # CONFIGS
 STATUS_LOOP_TIME_SECONDS = 20
 REACTION_TIMEOUT_SECONDS = 7
 PREFIX_PERCENT = "%"
 MEME_SUBREDDITS = ['memes', 'dank_meme', 'animemes']
+BOSS_NOTIFICATION_NOTICE_SECONDS = 1800
 
-# ANIME
+MODULES_GENERAL = 'Modules.General'
+MODULES_MARKET = 'Modules.Market'
+MODULES_BOSS = 'Modules.Boss'
+MODULES_FUN = 'Modules.Fun'
+MODULES_ANNOUNCE = 'Modules.Announcement'
+STARTUP_COG_MODULES = [MODULES_GENERAL, MODULES_MARKET, MODULES_BOSS, MODULES_FUN, MODULES_ANNOUNCE]
+
+# ANIME/MANGA
 MSG_FUN_RESPONSE = '```{0}```\n```{1}```\n{2}'
 MSG_FUN_ERR = "An error occured while retrieving {0} {1} :("
+
+# BOSS
+MSG_NEXT_BOSS_ANNC = "```diff\n- The next boss is {0} at {1} hrs, GMT+8```"
+MSG_NEXT_BOSS_REMINDER = "{0} \n```md\n {1} will spawn in 30 minutes time!```"
 
 # CALC
 MSG_CALC_FAIL = "```Sorry, I didn\'t get that, please use +, -, *, /, % only!```"
 MSG_CALC_RES = "```{0} is {1}```"
+
 # GENERAL
 MSG_BUG_DISCOVERED = "<@!{}> A bug have been discovered!"
 MSG_COMD_DENIED = "```Only Crème brûlées are allowed to use this feature!```"
@@ -110,6 +140,9 @@ MSG_ON_MEMBER_REMOVE = "```{0} has left or have been removed from the server```"
 MSG_TWITCH_WARNING = "Hello {0.mention}, it seems like you have pasted a Twitch link. All videos or stream advertisements goes to {1.mention}, thank you!"
 MSG_ROLE_REGISTER = "{0.author.mention} is now registered as a {1}!"
 MSG_ROLE_RESIGN = "{0.author.mention} have resigned as a {1}!"
+
+# MARKETPLACE
+MSG_MP_RESULT = "Without VP: %s \nWith VP: %s\nValues might be a little off depending on your family fame"
 
 # KHAN
 MSG_KHAN_ENQUIRY = 'Please react to enquire or update Khan announcement status!\n\n' \
@@ -202,6 +235,9 @@ ID_CHN_MEDIA = 587559616188121108
 ID_CHN_BOT_CHN = 574646616489721887
 ID_CHN_MENU_BOARD =574650178183626771
 ID_CHN_ACTIV_DISCUSS = 645931876107943967
+ID_ROLE_BOSSHUNTER = 623100796833234955
 ID_ROLE_CREME = 574641817505497106
 ID_ROLE_POPCORN = 707958341539856404
 ID_USER_EL = 193314826779361281
+ID_USER_KAGI = 382152478810046464
+ID_SERVER_PASTRIES = 574641536214630401

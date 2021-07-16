@@ -13,27 +13,25 @@ Currently there is only a (un)set Boss Hunter role, next boss and boss reminder 
 
 class Boss(commands.Cog):
     def __init__(self, bot):
-        logger.info("starting up Boss Cog")
+        logger.info(Constants.COG_STARTUP, Constants.BOSS)
         self.bot = bot
         self.bot.loop.create_task(self.boss_reminder())
 
-    @commands.command(name='bosshunter')
+    @commands.command(name=Constants.BOSSHUNTER_L)
     async def set_bh_role(self, message):
-        BOSSHUNTER_ID = 623100796833234955
-        role = get(message.guild.roles, id=BOSSHUNTER_ID)
+        role = get(message.guild.roles, id=Constants.ID_ROLE_BOSSHUNTER)
         member = message.author
         chn = message.channel
         if role not in member.roles:
             await member.add_roles(role)
-            await chn.send("{0.author.mention} is now registered as a boss hunter!".format(message))
+            await chn.send(Constants.MSG_ROLE_REGISTER.format(message, Constants.BOSS_HUNTER))
         elif role in member.roles:
             await member.remove_roles(role)
-            await chn.send("{0.author.mention} have resigned as a boss hunter!".format(message))
+            await chn.send(Constants.MSG_ROLE_RESIGN.format(message, Constants.BOSS_HUNTER))
 
-    @commands.command(name='wb')
+    @commands.command(name=Constants.WB_L)
     async def next_world_boss(self, chn):
-        msg = ('The next boss is ' + next_boss().get_name() + ' at ' + next_boss().get_time().strftime('%H:%M') + 'hrs, GMT+8')
-        await chn.send('```diff\n- ' + msg + '```')
+        await chn.send(Constants.MSG_NEXT_BOSS_ANNC.format(next_boss().get_name(), next_boss().get_time().strftime(Constants.DT_FORMAT_WB)))
 
     @commands.Cog.listener()
     async def boss_reminder(self):
@@ -41,12 +39,12 @@ class Boss(commands.Cog):
         chn = self.bot.get_channel(Constants.ID_CHN_BOT_CHN)
 
         for role in self.bot.get_guild(self.bot.get_server_id()).roles:
-            if role.name == 'Boss Hunter':
+            if role.name == Constants.BOSS_HUNTER:
                 bh = role
         while not self.bot.is_closed():
-            if time_diff(next_boss().get_time()) == 1800:
-                logger.info('sending boss notification for ' + next_boss().get_name())
-                await chn.send(bh.mention + '\n```md\n' + next_boss().get_name() + ' will spawn in 30 minutes time!```')
+            if time_diff(next_boss().get_time()) == Constants.BOSS_NOTIFICATION_NOTICE_SECONDS:
+                logger.info(Constants.BOSS_NOTIFICATION_SENT, next_boss().get_name())
+                await chn.send(Constants.MSG_NEXT_BOSS_REMINDER.format(bh.mention, next_boss().get_name()))
             await asyncio.sleep(1)
 
 

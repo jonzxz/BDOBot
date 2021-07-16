@@ -1,7 +1,7 @@
 from Scraper import Scraper
 import discord, asyncio, Constants
 from discord.ext import commands
-from utils import get_token, get_global_configs, get_startup_modules
+from utils import get_token
 from datetime import datetime
 from Logger import logger
 
@@ -17,16 +17,15 @@ class BDOBot(commands.Bot):
         self.remove_command(Constants.HELP_L)
         self.loop.create_task(self.change_status())
 
-        GLOBAL_CONFIGS = get_global_configs()
-        self.__owner_id = GLOBAL_CONFIGS[0]
-        self.__server_id = GLOBAL_CONFIGS[1]
+        self.__owner_id = Constants.ID_USER_KAGI
+        self.__server_id = Constants.ID_SERVER_PASTRIES
         self.__is_recruit_open = True
         self.__is_khan_active = True
         self.__is_war_active = True
         self.__next_khan_annc = None
         self.__next_war_annc = None
 
-        self.startup_extensions = get_startup_modules()
+        self.startup_extensions = Constants.STARTUP_COG_MODULES
 
     async def change_status(self):
         await self.wait_until_ready()
