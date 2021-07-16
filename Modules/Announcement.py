@@ -115,7 +115,10 @@ class Announcement(commands.Cog):
     @commands.Cog.listener()
     async def khan_announcement(self):
         logger.info(Constants.SCHEDULER_STARTUP, Constants.KHAN_ANNC)
-        next_khan_annc = pendulum.today().next(pendulum.FRIDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
+        if pendulum.today().day_of_week == pendulum.FRIDAY and pendulum.now() <= pendulum.today().add(hours=Constants.EIGHTEEN):
+            next_khan_annc = pendulum.today().add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
+        else:
+            next_khan_annc = pendulum.today().next(pendulum.FRIDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
         self.bot.set_next_khan_annc(next_khan_annc)
         logger.info(Constants.NEXT_ANNC, Constants.KHAN, self.bot.get_next_khan_annc().strftime(Constants.DT_FORMAT_ANNC))
 
@@ -145,7 +148,10 @@ class Announcement(commands.Cog):
     @commands.Cog.listener()
     async def war_announcement(self):
         logger.info(Constants.SCHEDULER_STARTUP, Constants.NODE_WAR)
-        next_war_annc = pendulum.today().next(pendulum.WEDNESDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
+        if pendulum.today().day_of_week == pendulum.WEDNESDAY and pendulum.now() <= pendulum.today().add(hours=Constants.EIGHTEEN):
+            next_war_annc = pendulum.today().add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
+        else:
+            next_war_annc = pendulum.today().next(pendulum.WEDNESDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
         self.bot.set_next_war_annc(next_war_annc)
         logger.info(Constants.NEXT_ANNC, Constants.NODE_WAR, self.bot.get_next_war_annc().strftime(Constants.DT_FORMAT_ANNC))
 
