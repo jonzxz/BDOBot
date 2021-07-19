@@ -128,8 +128,8 @@ class General(commands.Cog):
                 await chn.send(Constants.MSG_HELLO_MENTION.format(msg.author))
             if Constants.NEZUKO_L in content:
                 await chn.send(file=discord.File(Constants.ASSET_NEZUKO))
-            if Constants.TWITCHTV_L in content and channel.id == Constants.ID_CHN_BAKERY:
-                await chn.send(Constants.MSG_TWITCH_WARNING.format(msg.author, Constants.ID_CHN_MEDIA))
+            if Constants.TWITCHTV_L in content and chn.id == Constants.ID_CHN_BAKERY:
+                await chn.send(Constants.MSG_TWITCH_WARNING.format(msg.author, self.bot.get_channel(Constants.ID_CHN_MEDIA)))
                 await msg.delete()
             elif content.startswith(Constants.PREFIX_PERCENT) and ctx.valid is False:
                 results = self.bot.get_scraper().print_ingredients(content)
