@@ -142,7 +142,7 @@ MSG_ROLE_REGISTER = "{0.author.mention} is now registered as a {1}!"
 MSG_ROLE_RESIGN = "{0.author.mention} have resigned as a {1}!"
 
 # MARKETPLACE
-MSG_MP_RESULT = "Without VP: %s \nWith VP: %s\nValues might be a little off depending on your family fame"
+MSG_MP_RESULT = "Without VP: {0} \nWith VP: {1}\nValues might be a little off depending on your family fame!"
 
 # KHAN
 MSG_KHAN_ENQUIRY = 'Please react to enquire or update Khan announcement status!\n\n' \
