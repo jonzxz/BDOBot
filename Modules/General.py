@@ -1,3 +1,4 @@
+from utils import add_msg_reactions, is_creme_brulee
 from discord.ext import commands
 import discord, asyncio, re, emoji, Constants
 from Logger import logger
@@ -68,25 +69,20 @@ class General(commands.Cog):
         chn = message.channel
         self.react_chosen = None
 
-        if Constants.ID_ROLE_CREME in [role.id for role in message.author.roles]:
-            status_emoji = Constants.EMOJI_STATUS
-            open_emoji = Constants.EMOJI_OPEN
-            close_emoji = Constants.EMOJI_CLOSE
+        if is_creme_brulee(message.author.roles):
             msg = await chn.send(Constants.MSG_RECRUIT_ENQUIRY)
-            await msg.add_reaction(status_emoji)
-            await msg.add_reaction(open_emoji)
-            await msg.add_reaction(close_emoji)
+            await add_msg_reactions(msg, Constants.UPDATE)
 
             def check(reaction, user):
                 if user == message.author:
-                    if reaction.emoji == status_emoji:
+                    if reaction.emoji == Constants.EMOJI_STATUS:
                         logger.info(Constants.RECRUIT_TRIGGER, Constants.STATUS, user.display_name)
                         self.react_chosen = Constants.STATUS
-                    if reaction.emoji == open_emoji:
+                    if reaction.emoji == Constants.EMOJI_OPEN:
                         logger.info(Constants.RECRUIT_TRIGGER, Constants.STATUS, user.display_name)
                         self.react_chosen = Constants.OPEN
                         self.bot.set_recruit_open(True)
-                    if reaction.emoji == close_emoji:
+                    if reaction.emoji == Constants.EMOJI_CLOSE:
                         logger.info(Constants.RECRUIT_TRIGGER, Constants.CLOSE, user.display_name)
                         self.react_chosen = Constants.CLOSE
                         self.bot.set_recruit_open(False)
@@ -99,11 +95,8 @@ class General(commands.Cog):
                 reaction, user = await self.bot.wait_for(Constants.REACTION_ADD, timeout=Constants.REACTION_TIMEOUT_SECONDS, check=check)
                 await msg.delete()
                 logger.info(Constants.REACTION_CHOSEN, self.react_chosen)
-                if self.react_chosen == Constants.OPEN or self.react_chosen == Constants.CLOSE:
-                    if self.bot.get_recruit_open():
-                        await chn.send(MSG_RECRUIT_OPEN_UPDATE.format(message.author))
-                    if not self.bot.get_recruit_open():
-                        await chn.send(MSG_RECRUIT_CLOSE_UPDATE.format(message.author))
+                if self.react_chosen and not self.react_chosen == Constants.STATUS:
+                    await chn.send(Constants.MSG_RECRUIT_OPEN_UPDATE.format(message.author) if self.bot.get_recruit_open() else Constants.MSG_RECRUIT_CLOSE_UPDATE.format(message.author))
                 else:
                     await chn.send(Constants.MSG_RECRUIT_STATUS.format(Constants.OPEN if self.bot.get_recruit_open() else Constants.CLOSE))
             except asyncio.TimeoutError:

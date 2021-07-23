@@ -23,6 +23,7 @@ ENV_VAR_NOT_FOUND = "%s env var not found, attempting to read %s"
 FILE_NOT_FOUND = "%s not found"
 RETRIEVE_DISCORD_CONFIG = "retrieving Discord token"
 CONFIG_FILE_RETRIEVE_SUCCESS = "%s params retrieved from %s"
+ADD_REACTION_FOR_MSG = 'message passed and reaction type %s added'
 
 # NUMBER / FORMATS
 ZERO = 0
@@ -85,6 +86,10 @@ DISCORD_TOKEN = "DISCORD_TOKEN"
 DISCORD_TOKEN_FILE = "token.txt"
 PRAW_SECRET_FILE = "praw_secrets.txt"
 FILE_READ_MODE = 'r'
+KHAN_CAPS = 'KHAN'
+WAR_CAPS = 'WAR'
+UPDATE = 'UPDATE'
+YES_NO = 'YES_NO'
 
 # CONFIGS
 STATUS_LOOP_TIME_SECONDS = 20
