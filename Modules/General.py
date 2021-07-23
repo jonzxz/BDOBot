@@ -28,7 +28,7 @@ class General(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        logger.info(Constants.NEW_MEMBER_JOIN, member.display_name)
+        logger.info(Constants.ON_MEMBER_JOIN, member.display_name)
         entry_chn = self.bot.get_channel(Constants.ID_CHN_ENTRY)
         await asyncio.sleep(25)
         if entry_chn:
