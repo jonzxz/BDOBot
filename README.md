@@ -3,16 +3,32 @@ This project is a Discord Bot written in Python for the online MMORPG Black Dese
 The bot is my first Discord bot and my first side project that I have decided to take up in order to create some convenience.
 
 ## Features
-- The bot is able to retrieve cooking/crafting materials of a certain craft product/food that exists in the game. For example, The command '%beer' returns the ingredients required for a 'Beer' food in the game, whereas '%5 beer' returns the count for 5 of the food item.
-- The bot has a function that calculates the profit made from selling an item in the game's Central Marketplace, with or without an additional tax exemption from 'Value Pack'
-- The bot is built with a 'World Boss' feature to respond to users querying about the next upcoming World Boss, as well as the ability to give a Discord role to users that wants to be reminded(mentioned) 30 minutes before a boss spawns
+- This bot provides multiple features that may aid in the gameplay or additional fun features
+- Gameplay related features: 
+    - `%foodname`: retrieves ingredients for cooking / alchemy (i.e. %5 beer)
+    - `%wb`: shows upcoming world boss and time
+    - `%bosshunter`: register or unregister for a 'Boss Hunter' role to be notified of boss spawns
+    - `%mp`: calculates profits for marketplace sales
+    - `%hystria`: sends a map of Hystria dungeon
+    - `%sycraia`: sends a map of Sycraia underwater dungeon
+- Non gameplay related features:
+    - `%popcorn`: register or unregister for a 'Caramel Popcorn' role to be notified when there's a movie stream in the guild
+    - `%anime`: uses mal API to retrieve anime information from MyAnimeList
+    - `%manga`: uses mal API to retrieve manga information from MyAnimeList
+    - `%calc`: calculator
+    - `%meme`: uses praw API to retrieve random memes from selected subreddits
+- Additional features:
+    - `%recruit`: updates recruitment status to determine newcomer message
+    - Automatic message for when a new user joins, sending welcome and Q&A or recruitment closed message depending on %recruit status
+    - `%khan`: updates Khan announcement status
+    - Automatic Khan raid announcement for next upcoming Khan raid
+    - `%war`: updates Node War announcement status
+    - Automatic Node War announcement for next upcoming node war
 
-## Usage
-- Clone the repository and change the server_id to your Discord Server ID and run main.py (Optionally you could rename my BDOBot instance, and remove the auto-reply to send a .gif)
-- The bot is prefixed with the symbol '%'
-- Any command that exist within '%help' or any valid cook/craft item will retrieve the list of raw materials required
-- The bot is currently hardcoded to work in my guild's Discord Guild.
+## Future implementation
+- Implementation of dockerized noSQL database to store configuration values
 
-## Contributing
+
+## Contribution
 - Pull requests are welcomed, as well as suggestions or code critic or reviews. This bot is still in the development phase and will be for a while as it is a side project.
 - Some of the code are working but not the most efficient or elegant, any pull request for cleaner code is always appreciated.
