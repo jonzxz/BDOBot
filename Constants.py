@@ -23,6 +23,10 @@ ENV_VAR_NOT_FOUND = "%s env var not found, attempting to read %s"
 FILE_NOT_FOUND = "%s not found"
 RETRIEVE_DISCORD_CONFIG = "retrieving Discord token"
 CONFIG_FILE_RETRIEVE_SUCCESS = "%s params retrieved from %s"
+NEXT_ROLE_UPDATE_TIME = "next roles update time set at %s"
+ROLE_UPDATED_TIME = "roles updated at %s"
+NO_ROLE_UPDATED = "no %s role updated today"
+ROLE_UPDATED = "Following %s have %s role %s in their roles: [%s]"
 
 # NUMBER / FORMATS
 ZERO = 0
@@ -54,6 +58,7 @@ POPCORN_L = "popcorn"
 MARKETPLACE_L = "mp"
 WB_L = "wb"
 BOSSHUNTER_L = "bosshunter"
+DOUGHTART_L = "doughtart"
 
 # STRING
 PASTRIES = "Pastries"
@@ -85,6 +90,14 @@ DISCORD_TOKEN = "DISCORD_TOKEN"
 DISCORD_TOKEN_FILE = "token.txt"
 PRAW_SECRET_FILE = "praw_secrets.txt"
 FILE_READ_MODE = 'r'
+ROLE_UPDATE = "role update"
+CROISSANT = "Croissant"
+MACARON = "Macaron"
+EGGTART = "Eggtart"
+GUILD_MEMBER = "Guild Member"
+ADDED = "added"
+REMOVED = "removed"
+DOUGHTART = "DO-ugh-TArt"
 
 # CONFIGS
 STATUS_LOOP_TIME_SECONDS = 20
@@ -121,9 +134,10 @@ MSG_HELP_MSG = "```yaml\n" \
           "%help - shows this message\n\n" \
           "%foodname - retrieves ingredients i.e. %5 beer\n\n" \
           "%wb - shows the upcoming world boss\n\n" \
-          "%bosshunter - (un)register the Boss Hunter role.\n\n" \
+          "%bosshunter - (un)register the Boss Hunter role." \
           "Receive notifications 30 minutes before world boss!\n\n" \
           "%popcorn - (un)register the Caramel Popcorn role.\n\n" \
+          "%doughtart - (un)register the DOugh-TArt role.\n\n" \
           "%mp - shows profit with(out) VP from selling in MP i.e. %mp 43500000\n\n" \
           "%hystria - sends a map of hystria!\n\n" \
           "%meme - sends a random meme\n\n" \
@@ -140,6 +154,7 @@ MSG_ON_MEMBER_REMOVE = "```{0} has left or have been removed from the server```"
 MSG_TWITCH_WARNING = "Hello {0.mention}, it seems like you have pasted a Twitch link. All videos or stream advertisements goes to {1.mention}, thank you!"
 MSG_ROLE_REGISTER = "{0.author.mention} is now registered as a {1}!"
 MSG_ROLE_RESIGN = "{0.author.mention} have resigned as a {1}!"
+MSG_ROLE_UPDATE = "Following `{0}` have `{1}` {2} in their roles: \n```{3}```"
 
 # MARKETPLACE
 MSG_MP_RESULT = "Without VP: {0} \nWith VP: {1}\nValues might be a little off depending on your family fame!"
@@ -236,8 +251,15 @@ ID_CHN_BOT_CHN = 574646616489721887
 ID_CHN_MENU_BOARD =574650178183626771
 ID_CHN_ACTIV_DISCUSS = 645931876107943967
 ID_ROLE_BOSSHUNTER = 623100796833234955
+ID_ROLE_BRIOCHE = 635776028048097290
 ID_ROLE_CREME = 574641817505497106
+ID_ROLE_CROISSANT = 574641855229067264
+ID_ROLE_EGGTART = 659629130375102465
+ID_ROLE_MACARON = 575188744617852939
 ID_ROLE_POPCORN = 707958341539856404
+ID_ROLE_GMEMBER = 801718825128034335
+ID_ROLE_OFFICER = 801808081398792203
+ID_ROLE_GM = 574802564596367361
 ID_USER_EL = 193314826779361281
 ID_USER_KAGI = 382152478810046464
 ID_SERVER_PASTRIES = 574641536214630401

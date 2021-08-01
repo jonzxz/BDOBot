@@ -1,5 +1,5 @@
 from discord.ext import commands
-import discord, asyncio, re, emoji, Constants
+import discord, asyncio, re, emoji, Constants, pendulum
 from Logger import logger
 from discord.utils import get
 """
@@ -14,6 +14,7 @@ class General(commands.Cog):
         logger.info(Constants.COG_STARTUP, Constants.GENERAL)
         self.bot = bot
         self.react_chosen = None
+        self.bot.loop.create_task(self.update_roles())
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -111,6 +112,59 @@ class General(commands.Cog):
                 await msg.delete()
         else:
             await chn.send(Constants.MSG_COMD_DENIED)
+
+    @commands.Cog.listener()
+    async def update_roles(self):
+        logger.info(Constants.SCHEDULER_STARTUP, Constants.ROLE_UPDATE)
+        next_execution = pendulum.today().set(hour=18, minute=0, second=0, microsecond=0)
+        logger.info(Constants.NEXT_ROLE_UPDATE_TIME, next_execution.strftime(Constants.DT_FORMAT_ANNC))
+
+        await self.bot.wait_until_ready()
+        while not self.bot.is_closed():
+            # logger.info("Comparing now: " + pendulum.now().strftime('%H:%M:%S') + " to next time: " + next_execution.strftime('%H:%M:%S'))
+
+            if pendulum.now().set(microsecond=Constants.ZERO) == next_execution:
+                guild = self.bot.get_guild(id=Constants.ID_SERVER_PASTRIES)
+                croissant_role = get(guild.roles, id = Constants.ID_ROLE_CROISSANT)
+                gmember_role = get(guild.roles, id = Constants.ID_ROLE_GMEMBER)
+                macaron_role = get(guild.roles, id = Constants.ID_ROLE_MACARON)
+                eggtart_role = get(guild.roles, id = Constants.ID_ROLE_EGGTART)
+                # brioche_role = get(message.guild.roles, id = Constants.ID_ROLE_BRIOCHE)
+                # creme_role = get(message.guild.roles, id = Constants.ID_ROLE_CREME)
+                # officer_role = get(message.guild.roles, id = Constants.ID_ROLE_OFFICER)
+                # gm_role = get(guild.roles, id = Constants.ID_ROLE_GM)
+                member_role_add = []
+                member_role_removed = []
+                for member in guild.members:
+                    # Feature to update creme brulee / brioche such that all croissants are removed
+                    # if (creme_role in member.roles or brioche_role in member.roles) and not gm_role in member.roles:
+                    #     if croissant_role in member.roles:
+                    #         logger.info("officer %s has croissant role, removing", member.display_name)
+                    #         # await member.remove_roles(croissant_role)
+                    #     if not officer_role in member.roles:
+                    #         logger.info("officer %s does not have officer role, adding", member.display_name)
+                    #         # await member.add_roles(officer_role)
+                    if croissant_role in member.roles and not gmember_role in member.roles:
+                        member_role_add.append(member.display_name)
+                        await member.add_roles(gmember_role)
+                    if (macaron_role in member.roles or eggtart_role in member.roles) and gmember_role in member.roles:
+                        await member.remove_roles(gmember_role)
+                        member_role_removed.append(member.display_name)
+
+                member_role_added_str = ', '.join(member for member in member_role_add)
+                member_role_removed_str = ', '.join(member for member in member_role_removed)
+                chn = self.bot.get_channel(Constants.ID_CHN_BOT_CHN)
+                if member_role_add:
+                    logger.info(Constants.ROLE_UPDATED, Constants.CROISSANT, Constants.GUILD_MEMBER, Constants.ADDED, member_role_added_str)
+                    await chn.send(Constants.MSG_ROLE_UPDATE.format(Constants.CROISSANT, Constants.GUILD_MEMBER, Constants.ADDED, member_role_added_str))
+                else:
+                    logger.info(Constants.NO_ROLE_UPDATED, Constants.GUILD_MEMBER)
+                if member_role_removed:
+                    logger.info(Constants.ROLE_UPDATED, '/'.join([Constants.MACARON, Constants.EGGTART]), Constants.GUILD_MEMBER, Constants.REMOVED, member_role_removed_str)
+                    await chn.send(Constants.MSG_ROLE_UPDATE.format('/'.join([Constants.MACARON, Constants.EGGTART]), Constants.GUILD_MEMBER, Constants.REMOVED, member_role_removed_str))
+                else:
+                    logger.info(Constants.NO_ROLE_UPDATED, Constants.GUILD_MEMBER)
+            await asyncio.sleep(1)
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
