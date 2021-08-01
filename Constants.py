@@ -27,6 +27,7 @@ NEXT_ROLE_UPDATE_TIME = "next roles update time set at %s"
 ROLE_UPDATED_TIME = "roles updated at %s"
 NO_ROLE_UPDATED = "no %s role updated today"
 ROLE_UPDATED = "Following %s have %s role %s in their roles: [%s]"
+ADD_REACTION_FOR_MSG = 'message passed and reaction type %s added'
 
 # NUMBER / FORMATS
 ZERO = 0
@@ -98,6 +99,10 @@ GUILD_MEMBER = "Guild Member"
 ADDED = "added"
 REMOVED = "removed"
 DOUGHTART = "DO-ugh-TArt"
+KHAN_CAPS = 'KHAN'
+WAR_CAPS = 'WAR'
+UPDATE = 'UPDATE'
+YES_NO = 'YES_NO'
 
 # CONFIGS
 STATUS_LOOP_TIME_SECONDS = 20

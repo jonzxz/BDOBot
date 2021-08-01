@@ -1,7 +1,9 @@
 from data import week
-import datetime as dt
-import os, Constants
+import os, Constants, asyncio, datetime as dt
 from Logger import logger
+from discord.message import Message
+from typing import List
+from discord.role import Role
 
 """
 utils contains individual functions that kind of do not fit anywhere(yet)
@@ -79,3 +81,17 @@ def next_boss():
         boss = week[0][0]
 
     return boss
+
+async def add_msg_reactions(msg: Message, msg_type: str) -> None:
+    if (msg_type == Constants.YES_NO):
+        logger.info(Constants.ADD_REACTION_FOR_MSG, Constants.YES_NO)
+        await msg.add_reaction(Constants.EMOJI_Y)
+        await msg.add_reaction(Constants.EMOJI_N)
+    if (msg_type == Constants.UPDATE):
+        logger.info(Constants.ADD_REACTION_FOR_MSG, Constants.UPDATE)
+        await msg.add_reaction(Constants.EMOJI_STATUS)
+        await msg.add_reaction(Constants.EMOJI_OPEN)
+        await msg.add_reaction(Constants.EMOJI_CLOSE)
+
+def is_creme_brulee(role_list: List[Role]) -> bool:
+    return Constants.ID_ROLE_CREME in [role.id for role in role_list]

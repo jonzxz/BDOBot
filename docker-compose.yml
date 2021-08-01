@@ -11,5 +11,5 @@ services:
       - PRAW_CLIENT_ID=${PRAW_CLIENT_ID}
       - PRAW_CLIENT_SECRET=${PRAW_CLIENT_SECRET}
       - TZ=${TZ}
-    image: bdo-bot:tag
+    image: bdo-bot:1.0.0
     container_name: bdo-bot
