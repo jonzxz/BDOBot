@@ -109,7 +109,10 @@ class General(commands.Cog):
     @commands.Cog.listener()
     async def update_roles(self):
         logger.info(Constants.SCHEDULER_STARTUP, Constants.ROLE_UPDATE)
-        next_execution = pendulum.today().set(hour=18, minute=0, second=0, microsecond=0)
+        if pendulum.now() >= pendulum.today().add(hours=Constants.EIGHTEEN):
+            next_execution = pendulum.tomorrow().add(hours=18, minutes=0, seconds=0, microseconds=0)
+        else:
+            next_execution = pendulum.today().add(hours=18, minutes=0, seconds=0, microseconds=0)
         logger.info(Constants.NEXT_ROLE_UPDATE_TIME, next_execution.strftime(Constants.DT_FORMAT_ANNC))
 
         await self.bot.wait_until_ready()
@@ -157,6 +160,8 @@ class General(commands.Cog):
                     await chn.send(Constants.MSG_ROLE_UPDATE.format('/'.join([Constants.MACARON, Constants.EGGTART]), Constants.GUILD_MEMBER, Constants.REMOVED, member_role_removed_str))
                 else:
                     logger.info(Constants.NO_ROLE_UPDATED, Constants.GUILD_MEMBER)
+                next_execution = pendulum.tomorrow().add(hours=Constants.EIGHTEEN)
+                logger.info("setting next role update execution to %s", next_execution.strftime(Constants.DT_FORMAT_ANNC))
             await asyncio.sleep(1)
 
     @commands.Cog.listener()
