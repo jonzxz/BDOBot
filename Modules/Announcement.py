@@ -46,7 +46,7 @@ class Announcement(commands.Cog):
                 await msg.delete()
                 logger.info(Constants.REACTION_CHOSEN, self.__khan_react)
                 if self.__khan_react and not self.__khan_react == Constants.STATUS:
-                    await chn.send(Constants.MSG_KHAN_OPEN_UPDATE.format(message.author) if self.bot.get_khan_active() else Constants.MSG_KHAN_CLOSE_UPDATE.format(message.author)) 
+                    await chn.send(Constants.MSG_KHAN_OPEN_UPDATE.format(message.author) if self.bot.get_khan_active() else Constants.MSG_KHAN_CLOSE_UPDATE.format(message.author))
                 else:
                     await chn.send(Constants.MSG_KHAN_STATUS.format(Constants.ACTIVE if self.bot.get_khan_active() else Constants.INACTIVE))
             except asyncio.TimeoutError:
@@ -155,11 +155,11 @@ class Announcement(commands.Cog):
             await asyncio.sleep(1)
 
     def get_next_khan_dt(self):
-        return self.bot.get_next_khan_annc().next(pendulum.SATURDAY).add(hours=Constants.TWENTY_ONE)
+        return self.bot.get_next_khan_annc().next(pendulum.SATURDAY).add(hours=Constants.SIXTEEN)
 
     def get_next_war_dt(self):
         return self.bot.get_next_war_annc().next(pendulum.SUNDAY).add(hours=Constants.TWENTY_ONE)
-    
+
     def calc_next_annc_dt(self, annc_type: str) -> datetime:
         if (annc_type == Constants.WAR_CAPS):
             if pendulum.today().day_of_week == pendulum.WEDNESDAY and pendulum.now() <= pendulum.today().add(hours=Constants.EIGHTEEN):
@@ -172,10 +172,10 @@ class Announcement(commands.Cog):
             else:
                 return pendulum.today().next(pendulum.FRIDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
         return None
-    
 
-        
 
-        
+
+
+
 def setup(bot):
     bot.add_cog(Announcement(bot))
