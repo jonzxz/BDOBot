@@ -14,12 +14,21 @@ class Fun(commands.Cog):
         praw_secrets = get_praw_secrets()
         self.reddit = asyncpraw.Reddit(user_agent=Constants.NEZUKO_BOT, client_id=praw_secrets[0], client_secret=praw_secrets[1])
         self.subreddits = Constants.MEME_SUBREDDITS
+        self.uwu_subreddits = Constants.UWU_SUBREDDITS
 
     @commands.command(name=Constants.MEME_L)
     async def get_meme(self, ctx):
         sub_to_pick = random.randint(Constants.ZERO, Constants.TWO)
         post_to_pick = random.randint(Constants.ONE, Constants.TEN)
         subreddit_chosen = await self.reddit.subreddit(self.subreddits[sub_to_pick])
+        chosen_submissions = [sub async for sub in subreddit_chosen.hot(limit=15) if not sub.stickied]
+        chosen_submission = chosen_submissions[post_to_pick]
+        await ctx.send(chosen_submission.url)
+
+    @commands.command(name=Constants.UWU_L)
+    async def get_uwu(self, ctx):
+        post_to_pick = random.randint(Constants.ONE, Constants.TEN)
+        subreddit_chosen = await self.reddit.subreddit(self.uwu_subreddits[0])
         chosen_submissions = [sub async for sub in subreddit_chosen.hot(limit=15) if not sub.stickied]
         chosen_submission = chosen_submissions[post_to_pick]
         await ctx.send(chosen_submission.url)

@@ -41,7 +41,7 @@ class General(commands.Cog):
             else:
                 await entry_chn.send(MSG_REC_CLOSED_MSG.format(member), file=discord.File(Constants.ASSET_REC_CLOSE))
 
-    @commands.command(name=Constants.HELP_L, aliases=[Constants.HALP_L, Constants.UWU_L])
+    @commands.command(name=Constants.HELP_L, aliases=[Constants.HALP_L])
     async def help_info(self, chn):
         help_msg = str(Constants.MSG_HELP_MSG)
         await chn.send(help_msg)

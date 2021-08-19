@@ -112,6 +112,7 @@ STATUS_LOOP_TIME_SECONDS = 20
 REACTION_TIMEOUT_SECONDS = 7
 PREFIX_PERCENT = "%"
 MEME_SUBREDDITS = ['memes', 'animemes', 'meme', 'goodanimemes']
+UWU_SUBREDDITS = ['goldenretrievers']
 BOSS_NOTIFICATION_NOTICE_SECONDS = 1800
 
 MODULES_GENERAL = 'Modules.General'
