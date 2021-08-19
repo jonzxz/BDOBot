@@ -61,6 +61,8 @@ MARKETPLACE_L = "mp"
 WB_L = "wb"
 BOSSHUNTER_L = "bosshunter"
 DOUGHTART_L = "doughtart"
+HALP_L = 'halp'
+UWU_L = 'uwu'
 
 # STRING
 PASTRIES = "Pastries"
