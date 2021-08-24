@@ -1,6 +1,6 @@
 from discord.ext import commands
 from discord.utils import get
-import asyncio, pendulum, Constants
+import asyncio, pendulum, csv, Constants
 from Logger import logger
 from discord import File, User
 from datetime import datetime
@@ -12,8 +12,11 @@ class Announcement(commands.Cog):
         self.bot = bot
         self.bot.loop.create_task(self.khan_announcement())
         self.bot.loop.create_task(self.war_announcement())
+        self.bot.loop.create_task(self.snipe_reminder())
         self.__khan_react = None
         self.__war_react = None
+        self.__snipe_react = None
+        self.__snipe_duty_person = None
 
     @commands.command(name=Constants.KHAN_L)
     async def toggle_khan(self, message):
@@ -154,6 +157,65 @@ class Announcement(commands.Cog):
                     logger.info(Constants.INACTIVE_ANNOUNCER, Constants.NODE_WAR)
             await asyncio.sleep(1)
 
+    @commands.command(name=Constants.SNIPE_L)
+    async def receive_snipe_schedule(self, ctx):
+        logger.info("Snipe schedule function invoked")
+        if is_creme_brulee(ctx.message.author.roles):
+            if ctx.message.attachments:
+                logger.info("Snipe schedule attachment file received from %s", ctx.message.author.display_name)
+                snipe_schedule  = ctx.message.attachments[0]
+                await snipe_schedule.save(Constants.SNIPE_SCHEDULE_FILE)
+            else:
+                logger.info("Command invoked without attachments")
+                await ctx.send(Constants.MSG_NO_ATTACHMENTS)
+        else:
+            logger.info("Member %s tried to call officer only function", ctx.message.author.display_name)
+            await ctx.send(Constants.MSG_COMD_DENIED)
+
+    def retrieve_snipe_duty_today(self):
+        today_str = pendulum.today().format(Constants.DT_FORMAT_SNIPE)
+
+        with open(Constants.SNIPE_SCHEDULE_FILE, 'r') as snipe_duty_file:
+            data = csv.reader(snipe_duty_file, delimiter=',')
+            for line in data:
+                if line[0] == today_str:
+                    logger.info("Snipe duty today: %s, notification preference: %s", line[1], line[3])
+                    self.set_snipe_duty_person(line[1], line[2], line[3])
+                    return
+            logger.error("No data for today %s, defaulting to None", pendulum.today().format(Constants.DT_FORMAT_SNIPE))
+            self.__snipe_duty_person = None
+
+    @commands.Cog.listener()
+    async def snipe_reminder(self):
+        logger.info(Constants.SCHEDULER_STARTUP, Constants.SNIPE_REMINDER)
+        self.retrieve_snipe_duty_today()
+
+        await self.bot.wait_until_ready()
+        chn = self.bot.get_channel(871250117120909362)
+
+        while not self.bot.is_closed():
+            #logger.info("Comparing now: " + pendulum.now().strftime('%H:%M:%S'))
+            # Updates at 12am
+            if pendulum.now().set(microsecond=Constants.ZERO) == pendulum.today().add(hours=0, minutes=0, seconds=1):
+                self.retrieve_snipe_duty_today()
+                logger.info("Updating snipe duty, today's duty: %s", self.get_snipe_duty_person()[0])
+
+            # Sends reminder
+            if pendulum.now().set(microsecond=Constants.ZERO) == pendulum.today().add(hours=17, minutes=30, seconds=0):
+                if self.__snipe_duty_person:
+                    if self.get_snipe_duty_person()[2] == 'Y':
+                        duty_officer = await self.bot.fetch_user(self.get_snipe_duty_person()[1])
+                        logger.info(Constants.SENT_ANNC, Constants.SNIPE_REMINDER, pendulum.now().strftime(Constants.DT_FORMAT_ANNC))
+                        msg = await chn.send("{0.mention}\n```You are on snipe duty today, if you are unavailable, please ask other officers to take over!```".format(duty_officer))
+                        #await add_msg_reactions(msg, Constants.YES_NO)
+                else:
+                    logger.error("No snipe duty determined for today, this is an error!")
+            await asyncio.sleep(1)
+
+    @commands.command(name=Constants.DUTY_L)
+    async def get_snipe_duty_officer_today(self, ctx):
+        await ctx.send("```{0} is on snipe duty today!```".format(self.get_snipe_duty_person()[0]))
+
     def get_next_khan_dt(self):
         return self.bot.get_next_khan_annc().next(pendulum.SATURDAY).add(hours=Constants.SIXTEEN)
 
@@ -173,6 +235,11 @@ class Announcement(commands.Cog):
                 return pendulum.today().next(pendulum.FRIDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
         return None
 
+    def set_snipe_duty_person(self, officer_name: str, id: int, preference: str):
+        self.__snipe_duty_person = [officer_name, id, preference]
+
+    def get_snipe_duty_person(self):
+        return self.__snipe_duty_person
 
 
 

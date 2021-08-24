@@ -40,6 +40,7 @@ SIXTEEN = 16
 DT_FORMAT_ANNC = '%d/%m/%Y, %H:%M:%S'
 DT_FORMAT_INVITE = 'dddd DD MMM YYYY hh:mm A'
 DT_FORMAT_WB = '%H:%M'
+DT_FORMAT_SNIPE = 'DD-MM-YYYY'
 
 #COMMANDS
 HELP_L = 'help'
@@ -63,6 +64,8 @@ BOSSHUNTER_L = "bosshunter"
 DOUGHTART_L = "doughtart"
 HALP_L = 'halp'
 UWU_L = 'uwu'
+SNIPE_L = "snipe"
+DUTY_L = "duty"
 
 # STRING
 PASTRIES = "Pastries"
@@ -106,6 +109,8 @@ KHAN_CAPS = 'KHAN'
 WAR_CAPS = 'WAR'
 UPDATE = 'UPDATE'
 YES_NO = 'YES_NO'
+SNIPE_SCHEDULE_FILE = "snipe_schedule_file.csv"
+SNIPE_REMINDER = "Snipe Reminder"
 
 # CONFIGS
 STATUS_LOOP_TIME_SECONDS = 20
@@ -141,6 +146,7 @@ MSG_HELLO_MENTION = "Hello {0.mention}!"
 MSG_HELP_MSG = "```yaml\n" \
           "List of Commands\n----------------\n\n" \
           "%help - shows this message\n\n" \
+          "%halp - shows this message\n\n" \
           "%foodname - retrieves ingredients i.e. %5 beer\n\n" \
           "%wb - shows the upcoming world boss\n\n" \
           "%bosshunter - (un)register the Boss Hunter role." \
@@ -150,12 +156,14 @@ MSG_HELP_MSG = "```yaml\n" \
           "%mp - shows profit with(out) VP from selling in MP i.e. %mp 43500000\n\n" \
           "%hystria - sends a map of hystria!\n\n" \
           "%meme - sends a random meme\n\n" \
+          "%uwu - sends a golden retriever doggo\n\n" \
           "%calc - built-in calculator, supports +, -, *, /, %\n\n" \
           "%anime <title> - retrieves anime information from MyAnimeList\n\n" \
           "%manga <title> - retrieves manga information from MyAnimeList\n\n" \
           "%recruit - Update recruitment status (Crème brûlées only!)\n\n" \
           "%khan - Update Khan announcement status (Crème brûlées only!)\n\n" \
           "%war - Update Node War announcement status (Crème brûlées only!)\n\n" \
+          "%snipe - Upload a .csv file for daily node war snipe reminder (Crème brûlées only!)\n\n" \
           "%bug <message> - reports a bug to Kagi\n\n```"
 MSG_INVALID_COMD = "No results or commands was retrieved." \
         "\nPerhaps you wanna use '%help'?"
@@ -233,6 +241,7 @@ MSG_WAR_INVITE = ':crossed_swords:**HI BREADS! IT\'S WAR TIME!!:crossed_swords:\
 MSG_WAR_OPEN_UPDATE = "{0.mention} ```Updated War Announcement status to active!```"
 MSG_WAR_CLOSE_UPDATE = "{0.mention} ```Updated War Announcement status to inactive!```"
 MSG_WAR_STATUS = "```War Announcement Status: {0}```"
+MSG_NO_ATTACHMENTS = "```No attachments found in message, please send .csv with valid format!```"
 
 # ASSETS
 ASSET_POSTER = "assets/poster.png"
