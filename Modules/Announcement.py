@@ -191,7 +191,7 @@ class Announcement(commands.Cog):
         self.retrieve_snipe_duty_today()
 
         await self.bot.wait_until_ready()
-        chn = self.bot.get_channel(871250117120909362)
+        chn = self.bot.get_channel(Constants.ID_CHN_BOT_CHN)
 
         while not self.bot.is_closed():
             #logger.info("Comparing now: " + pendulum.now().strftime('%H:%M:%S'))
