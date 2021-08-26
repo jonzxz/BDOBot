@@ -137,15 +137,15 @@ class Announcement(commands.Cog):
 
         await self.bot.wait_until_ready()
         chn = self.bot.get_channel(Constants.ID_CHN_MENU_BOARD)
-
         while not self.bot.is_closed():
             # logger.info("Comparing now: " + pendulum.now().strftime('%H:%M:%S') + " to next time: " + self.bot.get_next_war_annc().strftime('%H:%M:%S'))
             if pendulum.now().set(microsecond=Constants.ZERO) == self.bot.get_next_war_annc():
                 if self.bot.get_war_active():
+                    gear_class_chn = self.bot.get_channel(Constants.ID_CHN_GEAR_CLASS)
                     discussion_chn = self.bot.get_channel(Constants.ID_CHN_ACTIV_DISCUSS)
                     logger.info(Constants.SENT_ANNC, Constants.NODE_WAR, pendulum.now().strftime(Constants.DT_FORMAT_ANNC))
                     await chn.send(file=File(Constants.ASSET_NW_ANNC))
-                    msg = await chn.send(Constants.MSG_WAR_INVITE.format(self.get_next_war_dt().format(Constants.DT_FORMAT_INVITE), discussion_chn))
+                    msg = await chn.send(Constants.MSG_WAR_INVITE.format(self.get_next_war_dt().format(Constants.DT_FORMAT_INVITE), discussion_chn, gear_class_chn))
                     await add_msg_reactions(msg, Constants.YES_NO)
 
                     logger.info(Constants.UPCOMING_ANNC, Constants.NODE_WAR, self.get_next_war_dt().strftime(Constants.DT_FORMAT_ANNC))

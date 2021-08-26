@@ -179,37 +179,28 @@ MSG_MP_RESULT = "Without VP: {0} \nWith VP: {1}\nValues might be a little off de
 # KHAN
 MSG_KHAN_ENQUIRY = 'Please react to enquire or update Khan announcement status!\n\n' \
                 ':bread: - Khan Announcement Status\n\n:o: - Activate Khan Announcement \n\n:x: - Deactivate Khan Announcement'
-MSG_KHAN_INVITE = ':whale:**HI BREADS! LET\'S DO KHAN RAID TOMOROWWW!!:whale:\n\n' \
-':calendar_spiral:Mark your calendar!**\n' \
-'`{0} GMT+8`\n\n' \
-':pretzel:Server will be announced later!\n' \
-':pretzel:CTG to OE, and taxi back to mainland will be provided\n' \
-':pretzel:We will be doing XL (Tier 3)!\n' \
-':pretzel:Let us know if you have friends interested to come to WH!\n\n' \
-'*New to Khan? Just come and join uss! No gear req needed as you\'ll shoot em fish with cannon! >:D*\n' \
-'Check this Video Guide to learn about Cannon Rotation so you can deal damage to the big fish more efficiently!\n' \
-'> https://www.youtube.com/watch?v=h1jY7r6bGQk\n' \
-'Or kindly poke {1.mention} for your Khan related questions!\n\n' \
-'**Confirm your attendance**\n' \
-'> by reacting :regional_indicator_y: if you\'re going to attend, or :regional_indicator_n: if you\'re not!\n' \
-'*Don\'t miss out seeing El getting Khan\'s Heart! See you this Saturday, breados!*<:yay:707879651804053565>' \
-'<@&574641817505497106> <@&635776028048097290> <@&574641855229067264>'
 MSG_KHAN_OPEN_UPDATE = "{0.mention} ```Updated Khan Announcement status to active!```"
 MSG_KHAN_CLOSE_UPDATE = "{0.mention} ```Updated Khan Announcement status to inactive!```"
 MSG_KHAN_STATUS = "```Khan Announcement Status: {0}```"
 
+MSG_KHAN_INVITE = ':whale:**HI BREADS! LET\'S DO KHAN RAID TOMOROWWW!!:whale:\n\n' \
+':calendar_spiral:Mark your calendar!**\n' \
+'`{0} GMT+8`\n\n' \
+':pretzel:Server will be announced in guild chat 1 hour before the raid starts!\n' \
+':pretzel:Please bring your PVP-safe character (Lv49 or less) to avoid grifers!\n' \
+':pretzel:CTG to OE, and taxi back to mainland will be provided\n' \
+':pretzel:We will be doing XL (Tier 3)! Let us know if you have friends interested to come to WH!\n\n' \
+'> *New to Khan Raid? Just come and join uss! We fully support every breads who wanna try new experiences! <:yay:707879651804053565>\n' \
+'> No gear req needed as you\'ll shoot em fish with cannon! >:D*\n' \
+'> Check this Video Guide to learn about Cannon Rotation so you can deal damage to the big fish more efficiently!\n' \
+'> https://www.youtube.com/watch?v=h1jY7r6bGQk\n' \
+'> Or kindly poke {1.mention} for your Khan related questions!\n\n' \
+'**Confirm your attendance**\n' \
+'> by reacting :regional_indicator_y: if you\'re going to attend, or :regional_indicator_n: if you\'re not!\n' \
+'*Don\'t miss out seeing El getting Khan\'s Heart! See you this Saturday, breados!*<:yay:707879651804053565>'
+#'<@&574641817505497106> <@&635776028048097290> <@&574641855229067264>'
+
 # RECRUIT
-MSG_REC_OPEN_MSG =':sparkles::pretzel:**Hello fresh dough {0.mention}, welcome to Pastries!**:sparkles::pretzel:\n' \
-               'We would like you to answer the following short questions before proceeding!\n\n' \
-               '> **01. What are you looking for in a guild?** *i.e. Payouts, socializing, guidance in game*\n\n' \
-               '> **02. Have you been in a guild before?** *If YES, what guild and why did you leave?*\n\n' \
-               '> **03. What kind of player do you consider yourself as?** *PVE, PVP, Lifeskill-oriented, or an all-rounded?*\n\n' \
-               '> **04. OPTIONAL - What is your nationality?** *We got people from MY/SG/INA/PH and a few more other countries inside!*\n\n' \
-               ':cake:By answering these questions, you also acknowledge that **Pastries is a chill International PVX/Lifeskill guild**\n' \
-               ':cake:**We do not tolerate any form of unhealthy or immature behaviours when you are with us!**\n' \
-               ':cake:Please head over to {1.mention} for more info and our guild rules!\n\n' \
-               '**Thank you for answering the questions - Please mention Crème brûlée when you are done**\n' \
-               '*We look forward to get to know you better!*\n\n'
 MSG_REC_CLOSED_MSG = ":pretzel:**Welcome to Pastries!**:pretzel:\n\n' \
                 'Hello {0.mention}, Thank you for visiting our discord!\n' \
                 'We\'d really love to have you joining our little bakery.\nBut unfortunately, ' \
@@ -223,25 +214,43 @@ MSG_RECRUIT_OPEN_UPDATE = "{0.mention} ```Updated recruitment status to open!```
 MSG_RECRUIT_CLOSE_UPDATE = "{0.mention} ```Updated recruitment status to closed!```"
 MSG_RECRUIT_STATUS = "```Recruitment Status: {0}```"
 
+MSG_REC_OPEN_MSG =':sparkles::pretzel:**Hello fresh dough {0.mention}, welcome to Pastries!**:sparkles::pretzel:\n' \
+               'We would like you to answer the following short questions before proceeding!\n\n' \
+               '> **01. What\'s your in-game Family Name? Where did you find our guild from?** *i.e. from server-chat advertisement, recommendation from a friend (please identify), Guild Rank Board, BDO SEA community forum, etc*\n\n' \
+               '> **02. What are you looking for in a guild?** *i.e. Payouts, socializing, guidance in game*\n\n' \
+               '> **03. Have you been in a guild before?** *If YES, what guild and why did you leave?*\n\n' \
+               '> **04. What kind of player do you consider yourself as?** *PVE, PVP, Lifeskill-oriented, or an all-rounded?*\n\n' \
+               '> **05. OPTIONAL - Where are you from? What timezone do you live in?** *We got people from MY/SG/INA/PH and a few more other countries inside!*\n\n' \
+               ':cake:By answering these questions, you also acknowledge that Pastries is a **chill International PVX/Lifeskill guild**\n' \
+               ':cake:**We do not tolerate any form of unhealthy or immature behaviours when you are with us!**\n' \
+               ':cake:Please head over to {1.mention} for more info and our guild rules!\n\n' \
+               '**Thank you for answering the questions - Please mention @/[Officer] Crème brûlée or @/[Officer]Brioche Bun when you are done**\n' \
+               '*We look forward to get to know you better!*\n\n'
+
 # NODE WAR
 MSG_WAR_ENQUIRY = 'Please react to enquire or update NW announcement status!\n\n' \
                 ':bread: - NW Announcement Status\n\n:o: - Activate NW Announcement \n\n:x: - Deactivate NW Announcement'
-MSG_WAR_INVITE = ':crossed_swords:**HI BREADS! IT\'S WAR TIME!!:crossed_swords:\n\n' \
-':calendar_spiral:Mark your calendar!**\n' \
-'`{0} GMT+8`\n\n' \
-':pretzel:Server will be announced later!\n' \
-':pretzel:**No minimum gearscore required**, shotcalls will be on Discord so joining in voice chat is mandatory!<:kagi_proudmum:830388637073145907>\n' \
-':pretzel:We will be participating in Tier 1 node war!\n\n' \
-'*New to Node War? Just come and join uss! Alternatively, Node War guides and discussions are on {1.mention}*\n\n' \
-'More details about the node and platoon composition will be posted here on war day!\n\n' \
-'**Confirm your attendance**\n' \
-'> by reacting :regional_indicator_y: if you\'re going to attend, or :regional_indicator_n: if you\'re not!\n' \
-'*With consideration of participant caps, members with :regional_indicator_y: reacted in this post will be guaranteed a slot*' \
-'<@&574641817505497106> <@&635776028048097290> <@&574641855229067264>'
 MSG_WAR_OPEN_UPDATE = "{0.mention} ```Updated War Announcement status to active!```"
 MSG_WAR_CLOSE_UPDATE = "{0.mention} ```Updated War Announcement status to inactive!```"
 MSG_WAR_STATUS = "```War Announcement Status: {0}```"
 MSG_NO_ATTACHMENTS = "```No attachments found in message, please send .csv with valid format!```"
+
+MSG_WAR_INVITE = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SPREAD!:crossed_swords:\n\n' \
+':calendar_spiral:Mark your calendar!**\n' \
+'`{0} GMT+8`\n\n' \
+':pretzel:We will be participating in **Tier 1** Node War! Server will be announced 1 hour before Node War starts!\n' \
+':pretzel:We have up to 55 slots for everyone to join in. **No minimum gearscore required**, EVERYONE is invited to join in the fun, the more the merrier!\n' \
+':pretzel:Shotcalls will be on Discord so joining in voice chat is mandatory! <:kagi_proudmum:830388637073145907>\n\n' \
+'> *New to Node War? Just come and join us! We fully support every breads who wanna try new experiences!* \n' \
+'> While knowing how to PVP is crucial, there are so much more into NW if you prefer the \'less-agressive\' way to contribute, i.e. Carrack-captain, Elephant-rider + Spear-thrower, Flame Tower pilot, Cannoneer, Hwacha pilot, etc!' \
+'> Kindly poke any of our officers if you\'re interested or have any questions in any of these stuff!\n' \
+'> Alternatively, Node War guides and discussions are on {1.mention}\n\n' \
+'> Please post/update your character gear info in {2.mention} to help us in making team compositions easier!\n' \
+'> More details about the node we will be fighting in and platoon composition will be posted here on war day!\n\n' \
+'**CONFIRM YOUR ATTENDANCE**\n' \
+'> by reacting :regional_indicator_y: if you\'re going to attend, or :regional_indicator_n: if you\'re not!\n' \
+'*With consideration of participant caps, members with :regional_indicator_y: reacted in this post will be guaranteed a slot*\n' 
+'<@&574641817505497106> <@&635776028048097290> <@&574641855229067264>'
 
 # ASSETS
 ASSET_POSTER = "assets/poster.png"
@@ -268,6 +277,8 @@ ID_CHN_MEDIA = 587559616188121108
 ID_CHN_BOT_CHN = 574646616489721887
 ID_CHN_MENU_BOARD =574650178183626771
 ID_CHN_ACTIV_DISCUSS = 645931876107943967
+ID_CHN_GEAR_CLASS = 801731373147881515
+ID_CHN_KAGI_PLAYGROUND = 871250117120909362
 ID_ROLE_BOSSHUNTER = 623100796833234955
 ID_ROLE_BRIOCHE = 635776028048097290
 ID_ROLE_CREME = 574641817505497106
