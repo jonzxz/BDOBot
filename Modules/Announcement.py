@@ -214,8 +214,10 @@ class Announcement(commands.Cog):
 
     @commands.command(name=Constants.DUTY_L)
     async def get_snipe_duty_officer_today(self, ctx):
-        await ctx.send("```{0} is on snipe duty today!```".format(self.get_snipe_duty_person()[0]))
-
+        if self.get_snipe_duty_officer_today():
+            await ctx.send("```{0} is on snipe duty today!```".format(self.get_snipe_duty_person()[0]))
+        else:
+            await ctx.send("```No snipe duty scheduled for today!```")
     def get_next_khan_dt(self):
         return self.bot.get_next_khan_annc().next(pendulum.SATURDAY).add(hours=Constants.SIXTEEN)
 

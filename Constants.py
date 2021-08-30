@@ -198,7 +198,7 @@ MSG_KHAN_INVITE = ':whale:**HI BREADS! LET\'S DO KHAN RAID TOMOROWWW!!:whale:\n\
 '**Confirm your attendance**\n' \
 '> by reacting :regional_indicator_y: if you\'re going to attend, or :regional_indicator_n: if you\'re not!\n' \
 '*Don\'t miss out seeing El getting Khan\'s Heart! See you this Saturday, breados!*<:yay:707879651804053565>'
-#'<@&574641817505497106> <@&635776028048097290> <@&574641855229067264>'
+'<@&635776028048097290> <@&574641855229067264>'
 
 # RECRUIT
 MSG_REC_CLOSED_MSG = ":pretzel:**Welcome to Pastries!**:pretzel:\n\n' \
@@ -250,7 +250,7 @@ MSG_WAR_INVITE = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SP
 '**CONFIRM YOUR ATTENDANCE**\n' \
 '> by reacting :regional_indicator_y: if you\'re going to attend, or :regional_indicator_n: if you\'re not!\n' \
 '*With consideration of participant caps, members with :regional_indicator_y: reacted in this post will be guaranteed a slot*\n' 
-'<@&574641817505497106> <@&635776028048097290> <@&574641855229067264>'
+'<@&635776028048097290> <@&574641855229067264>'
 
 # ASSETS
 ASSET_POSTER = "assets/poster.png"
