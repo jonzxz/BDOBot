@@ -37,6 +37,7 @@ TEN = 10
 EIGHTEEN = 18
 TWENTY_ONE = 21
 SIXTEEN = 16
+THIRTY = 30
 DT_FORMAT_ANNC = '%d/%m/%Y, %H:%M:%S'
 DT_FORMAT_INVITE = 'dddd DD MMM YYYY hh:mm A'
 DT_FORMAT_WB = '%H:%M'
@@ -67,6 +68,7 @@ UWU_L = 'uwu'
 SNIPE_L = "snipe"
 DUTY_L = "duty"
 INTRO_L = "intro"
+ROLE_L = "role"
 
 # STRING
 PASTRIES = "Pastries"
@@ -106,10 +108,12 @@ GUILD_MEMBER = "Guild Member"
 ADDED = "added"
 REMOVED = "removed"
 DOUGHTART = "DO-ugh-TArt"
+DND_CRUMBS = "D&D Crumbs"
 KHAN_CAPS = 'KHAN'
 WAR_CAPS = 'WAR'
 UPDATE = 'UPDATE'
 YES_NO = 'YES_NO'
+ROLES_UPDATE_COMD = "ROLES_UPDATE"
 SNIPE_SCHEDULE_FILE = "snipe_schedule_file.csv"
 SNIPE_REMINDER = "Snipe Reminder"
 OFFICER = "Officer"
@@ -129,7 +133,8 @@ MODULES_BOSS = 'Modules.Boss'
 MODULES_FUN = 'Modules.Fun'
 MODULES_ANNOUNCE = 'Modules.Announcement'
 MODULES_OFFICER = 'Modules.Officer'
-STARTUP_COG_MODULES = [MODULES_GENERAL, MODULES_MARKET, MODULES_BOSS, MODULES_FUN, MODULES_ANNOUNCE, MODULES_OFFICER]
+MODULES_ROLE = 'Modules.Role'
+STARTUP_COG_MODULES = [MODULES_GENERAL, MODULES_MARKET, MODULES_BOSS, MODULES_FUN, MODULES_ANNOUNCE, MODULES_OFFICER, MODULES_ROLE]
 
 # ANIME/MANGA
 MSG_FUN_RESPONSE = '```{0}```\n```{1}```\n{2}'
@@ -152,11 +157,8 @@ MSG_HELP_MSG = "```yaml\n" \
           "%help - shows this message\n\n" \
           "%halp - shows this message\n\n" \
           "%foodname - retrieves ingredients i.e. %5 beer\n\n" \
-          "%wb - shows the upcoming world boss\n\n" \
-          "%bosshunter - (un)register the Boss Hunter role." \
-          "Receive notifications 30 minutes before world boss!\n\n" \
-          "%popcorn - (un)register the Caramel Popcorn role.\n\n" \
-          "%doughtart - (un)register the DOugh-TArt role.\n\n" \
+          "%role - displays the role menu to register / unregister yourself for custom roles" \
+          "%wb - shows the upcoming world boss - " \
           "%mp - shows profit with(out) VP from selling in MP i.e. %mp 43500000\n\n" \
           "%hystria - sends a map of hystria!\n\n" \
           "%meme - sends a random meme\n\n" \
@@ -173,8 +175,8 @@ MSG_INVALID_COMD = "No results or commands was retrieved." \
         "\nPerhaps you wanna use '%help'?"
 MSG_ON_MEMBER_REMOVE = "```{0} has left or have been removed from the server```"
 MSG_TWITCH_WARNING = "Hello {0.mention}, it seems like you have pasted a Twitch link. All videos or stream advertisements goes to {1.mention}, thank you!"
-MSG_ROLE_REGISTER = "{0.author.mention} is now registered as a {1}!"
-MSG_ROLE_RESIGN = "{0.author.mention} have resigned as a {1}!"
+MSG_ROLE_REGISTER = "{0.mention} is now registered as a {1}!"
+MSG_ROLE_RESIGN = "{0.mention} have resigned as a {1}!"
 MSG_ROLE_UPDATE = "Following `{0}` have `{1}` {2} in their roles: \n```{3}```"
 
 # MARKETPLACE
@@ -256,6 +258,15 @@ MSG_WAR_INVITE = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SP
 '*With consideration of participant caps, members with :regional_indicator_y: reacted in this post will be guaranteed a slot*\n' 
 '<@&635776028048097290> <@&574641855229067264>'
 
+# ROLE
+MSG_ROLE_MENU = "Hello {0.mention}, welcome to the Roles menu!\n\n" \
+        "In this menu, you can register / unregister for custom roles we have in Pastries\n" \
+        "To update your roles, simply click on any of the reaction buttons provided -\n\n" \
+        "> {1} - Caramel Popcorn - movie streaming time!\n" \
+        "> {2} - DOugh-TArt - be part of the Dota gang!\n" \
+        "> {3} - D&D Crumbs - join us and play D&D together!\n" \
+        "> {4} - Boss Hunter - get notified of world boss 30 minutes before spawn!\n\n"
+
 # ASSETS
 ASSET_POSTER = "assets/poster.png"
 ASSET_REC_CLOSE = "assets/garlic_bread.png"
@@ -271,7 +282,15 @@ EMOJI_OPEN = "\U00002b55"
 EMOJI_CLOSE = "\U0000274c"
 EMOJI_Y = "\U0001F1FE"
 EMOJI_N = '\U0001F1F3'
+EMOJI_EL_YAY_C = '<:yay:707879651804053565>'
+EMOJI_BAM_MAD_C = '<:bam_madman:868057992170463243>'
+EMOJI_EL_SIP_C = '<:melvin_sip:867338932676329472>'
+EMOJI_MIIA_GASP_C = '<:miia_gasp:868001842011992124>'
 REACTION_ADD = 'reaction_add'
+EMOJI_EL_YAY_C_ID = 707879651804053565
+EMOJI_BAM_MAD_C_ID = 868057992170463243
+EMOJI_EL_SIP_C_ID = 867338932676329472
+EMOJI_MIIA_GASP_C_ID = 868001842011992124
 
 # ID
 ID_CHN_ABOUT_US = 575282309947850822
@@ -293,6 +312,7 @@ ID_ROLE_POPCORN = 707958341539856404
 ID_ROLE_GMEMBER = 801718825128034335
 ID_ROLE_OFFICER = 801808081398792203
 ID_ROLE_GM = 574802564596367361
+ID_ROLE_DND_CRUMBS = 798722709739405332
 ID_USER_EL = 193314826779361281
 ID_USER_KAGI = 382152478810046464
 ID_SERVER_PASTRIES = 574641536214630401

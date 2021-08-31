@@ -92,9 +92,17 @@ async def add_msg_reactions(msg: Message, msg_type: str) -> None:
         await msg.add_reaction(Constants.EMOJI_STATUS)
         await msg.add_reaction(Constants.EMOJI_OPEN)
         await msg.add_reaction(Constants.EMOJI_CLOSE)
-
+    if (msg_type == Constants.ROLES_UPDATE_COMD):
+        logger.info(Constants.ADD_REACTION_FOR_MSG, Constants.ROLES_UPDATE_COMD)
+        await msg.add_reaction(Constants.EMOJI_EL_SIP_C)
+        await msg.add_reaction(Constants.EMOJI_BAM_MAD_C)
+        await msg.add_reaction(Constants.EMOJI_EL_YAY_C)
+        await msg.add_reaction(Constants.EMOJI_MIIA_GASP_C)
 def is_creme_brulee(role_list: List[Role]) -> bool:
     return Constants.ID_ROLE_CREME in [role.id for role in role_list]
 
 def is_brioche_bun(role_list: List[Role]) -> bool:
     return Constants.ID_ROLE_BRIOCHE in [role.id for role in role_list]
+
+def equals(a, b):
+    return a == b
