@@ -69,17 +69,6 @@ class General(commands.Cog):
         else:
             await ctx.send("```No snipe duty scheduled for today!```")
 
-    @commands.command(name=Constants.INTRO_L)
-    async def send_intro_qn(self, ctx, msg):
-        about_us = self.bot.get_channel(Constants.ID_CHN_ABOUT_US)
-        member = await self.bot.fetch_user(msg[3:-1])
-        logger.info("{0} invoked intro for {1}".format(ctx.message.author.display_name, member.display_name))
-        await ctx.message.delete()
-        await ctx.send(file=discord.File(Constants.ASSET_POSTER))
-        await ctx.send(Constants.MSG_REC_OPEN_MSG.format(member, about_us))
- 
-
-
     @commands.Cog.listener()
     async def update_roles(self):
         logger.info(Constants.SCHEDULER_STARTUP, Constants.ROLE_UPDATE)

@@ -17,18 +17,6 @@ class Boss(commands.Cog):
         self.bot = bot
         self.bot.loop.create_task(self.boss_reminder())
 
-    @commands.command(name=Constants.BOSSHUNTER_L)
-    async def set_bh_role(self, message):
-        role = get(message.guild.roles, id=Constants.ID_ROLE_BOSSHUNTER)
-        member = message.author
-        chn = message.channel
-        if role not in member.roles:
-            await member.add_roles(role)
-            await chn.send(Constants.MSG_ROLE_REGISTER.format(message, Constants.BOSS_HUNTER))
-        elif role in member.roles:
-            await member.remove_roles(role)
-            await chn.send(Constants.MSG_ROLE_RESIGN.format(message, Constants.BOSS_HUNTER))
-
     @commands.command(name=Constants.WB_L)
     async def next_world_boss(self, chn):
         await chn.send(Constants.MSG_NEXT_BOSS_ANNC.format(next_boss().get_name(), next_boss().get_time().strftime(Constants.DT_FORMAT_WB)))

@@ -95,3 +95,6 @@ async def add_msg_reactions(msg: Message, msg_type: str) -> None:
 
 def is_creme_brulee(role_list: List[Role]) -> bool:
     return Constants.ID_ROLE_CREME in [role.id for role in role_list]
+
+def is_brioche_bun(role_list: List[Role]) -> bool:
+    return Constants.ID_ROLE_BRIOCHE in [role.id for role in role_list]

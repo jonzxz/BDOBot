@@ -113,6 +113,7 @@ YES_NO = 'YES_NO'
 SNIPE_SCHEDULE_FILE = "snipe_schedule_file.csv"
 SNIPE_REMINDER = "Snipe Reminder"
 OFFICER = "Officer"
+ROLE = "Role"
 
 # CONFIGS
 STATUS_LOOP_TIME_SECONDS = 20

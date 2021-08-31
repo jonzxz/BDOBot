@@ -1,4 +1,4 @@
-from utils import add_msg_reactions, is_creme_brulee
+from utils import add_msg_reactions, is_creme_brulee, is_brioche_bun
 from discord.ext import commands
 import Constants
 from Logger import logger
@@ -146,8 +146,20 @@ class Officer(commands.Cog):
                 logger.info("Command invoked without attachments")
                 await ctx.send(Constants.MSG_NO_ATTACHMENTS)
         else:
-            logger.info("Member %s tried to call officer only function", ctx.message.author.display_name)
+            logger.info("Member %s tried to call officer only snipe function", ctx.message.author.display_name)
             await ctx.send(Constants.MSG_COMD_DENIED)
+
+    @commands.command(name=Constants.INTRO_L)
+    async def send_intro_qn(self, ctx, msg):
+        if is_brioche_bun(ctx.message.author.roles):
+            about_us = self.bot.get_channel(Constants.ID_CHN_ABOUT_US)
+            member = await self.bot.fetch_user(msg[3:-1])
+            logger.info("{0} invoked intro for {1}".format(ctx.message.author.display_name, member.display_name))
+            await ctx.message.delete()
+            await ctx.send(file=discord.File(Constants.ASSET_POSTER))
+            await ctx.send(Constants.MSG_REC_OPEN_MSG.format(member, about_us))
+        else:
+            logger.warn("Member %s tried to call intro", ctx.message.author.display_name)
 
     def set_recruit_react_chosen(self, react: str) -> None:
         self.__recruit_react_chosen = react
