@@ -157,8 +157,8 @@ MSG_HELP_MSG = "```yaml\n" \
           "%help - shows this message\n\n" \
           "%halp - shows this message\n\n" \
           "%foodname - retrieves ingredients i.e. %5 beer\n\n" \
-          "%role - displays the role menu to register / unregister yourself for custom roles" \
-          "%wb - shows the upcoming world boss - " \
+          "%role - displays the role menu to register / unregister yourself for custom roles \n\n" \
+          "%wb - shows the upcoming world boss \n\n" \
           "%mp - shows profit with(out) VP from selling in MP i.e. %mp 43500000\n\n" \
           "%hystria - sends a map of hystria!\n\n" \
           "%meme - sends a random meme\n\n" \
