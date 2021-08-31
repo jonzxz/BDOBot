@@ -166,6 +166,7 @@ MSG_HELP_MSG = "```yaml\n" \
           "%calc - built-in calculator, supports +, -, *, /, %\n\n" \
           "%anime <title> - retrieves anime information from MyAnimeList\n\n" \
           "%manga <title> - retrieves manga information from MyAnimeList\n\n" \
+          "%intro <@person> - Sends questionnaire (Brioche Buns only!)\n\n" \
           "%recruit - Update recruitment status (Crème brûlées only!)\n\n" \
           "%khan - Update Khan announcement status (Crème brûlées only!)\n\n" \
           "%war - Update Node War announcement status (Crème brûlées only!)\n\n" \

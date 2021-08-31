@@ -2,6 +2,8 @@
 
 ## 31 Aug 2021
 - Fixed missing Constants causing closed recruitment message to not send
+- Added %intro feature to resend questionnaire
+- Condensed all role giving features (%bh, %popcorn, %doughtart) into a single %role menu
 
 ## 30 Aug 2021
 - Added check for if snipe duty officer exist to prevent null
