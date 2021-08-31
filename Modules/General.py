@@ -39,7 +39,7 @@ class General(commands.Cog):
                 await entry_chn.send(file=discord.File(Constants.ASSET_POSTER))
                 await entry_chn.send(Constants.MSG_REC_OPEN_MSG.format(member, about_us))
             else:
-                await entry_chn.send(MSG_REC_CLOSED_MSG.format(member), file=discord.File(Constants.ASSET_REC_CLOSE))
+                await entry_chn.send(Constants.MSG_REC_CLOSED_MSG.format(member), file=discord.File(Constants.ASSET_REC_CLOSE))
 
     @commands.command(name=Constants.HELP_L, aliases=[Constants.HALP_L])
     async def help_info(self, chn):

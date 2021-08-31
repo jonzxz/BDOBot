@@ -224,7 +224,7 @@ MSG_REC_OPEN_MSG =':sparkles::pretzel:**Hello fresh dough {0.mention}, welcome t
                ':cake:By answering these questions, you also acknowledge that Pastries is a **chill International PVX/Lifeskill guild**\n' \
                ':cake:**We do not tolerate any form of unhealthy or immature behaviours when you are with us!**\n' \
                ':cake:Please head over to {1.mention} for more info and our guild rules!\n\n' \
-               '**Thank you for answering the questions - Please mention @/[Officer] Crème brûlée or @/[Officer]Brioche Bun when you are done**\n' \
+               '**Thank you for answering the questions - Please mention @/[Officer]Brioche Bun when you are done**\n' \
                '*We look forward to get to know you better!*\n\n'
 
 # NODE WAR
