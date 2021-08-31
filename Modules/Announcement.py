@@ -13,91 +13,6 @@ class Announcement(commands.Cog):
         self.bot.loop.create_task(self.khan_announcement())
         self.bot.loop.create_task(self.war_announcement())
         self.bot.loop.create_task(self.snipe_reminder())
-        self.__khan_react = None
-        self.__war_react = None
-        self.__snipe_react = None
-        self.__snipe_duty_person = None
-
-    @commands.command(name=Constants.KHAN_L)
-    async def toggle_khan(self, message):
-        chn = message.channel
-
-        if is_creme_brulee(message.author.roles):
-            msg = await chn.send(Constants.MSG_KHAN_ENQUIRY)
-            await add_msg_reactions(msg, Constants.UPDATE)
-
-            def check(reaction, user):
-                if user == message.author:
-                    if reaction.emoji == Constants.EMOJI_STATUS:
-                        logger.info(Constants.KHAN_TRIGGER, Constants.OPEN, user.display_name)
-                        self.__khan_react = Constants.STATUS
-                    if reaction.emoji == Constants.EMOJI_OPEN:
-                        logger.info(Constants.KHAN_TRIGGER, Constants.OPEN, user.display_name)
-                        self.__khan_react = Constants.OPEN
-                        self.bot.set_khan_active(True)
-                    if reaction.emoji == Constants.EMOJI_CLOSE:
-                        logger.info(Constants.KHAN_TRIGGER, Constants.OPEN, user.display_name)
-                        self.__khan_react = Constants.CLOSE
-                        self.bot.set_khan_active(False)
-                    return True
-                return False
-
-            await asyncio.sleep(1)
-
-            try:
-                reaction, user = await self.bot.wait_for(Constants.REACTION_ADD, timeout=Constants.REACTION_TIMEOUT_SECONDS, check=check)
-                await msg.delete()
-                logger.info(Constants.REACTION_CHOSEN, self.__khan_react)
-                if self.__khan_react and not self.__khan_react == Constants.STATUS:
-                    await chn.send(Constants.MSG_KHAN_OPEN_UPDATE.format(message.author) if self.bot.get_khan_active() else Constants.MSG_KHAN_CLOSE_UPDATE.format(message.author))
-                else:
-                    await chn.send(Constants.MSG_KHAN_STATUS.format(Constants.ACTIVE if self.bot.get_khan_active() else Constants.INACTIVE))
-            except asyncio.TimeoutError:
-                logger.info(Constants.REACT_TIMEOUT, Constants.KHAN)
-                await msg.delete()
-        else:
-            await chn.send(Constants.MSG_COMD_DENIED)
-
-    @commands.command(name=Constants.WAR_L)
-    async def toggle_war(self, message):
-        chn = message.channel
-
-        if is_creme_brulee(message.author.roles):
-            msg = await chn.send(Constants.MSG_WAR_ENQUIRY)
-            await add_msg_reactions(msg, Constants.UPDATE)
-
-            def check(reaction, user):
-                if user == message.author:
-                    if reaction.emoji == Constants.EMOJI_STATUS:
-                        logger.info(Constants.WAR_TRIGGER, Constants.STATUS, user.display_name)
-                        self.__war_react = Constants.STATUS
-                    if reaction.emoji == Constants.EMOJI_OPEN:
-                        logger.info(Constants.WAR_TRIGGER, Constants.OPEN, user.display_name)
-                        self.__war_react = Constants.OPEN
-                        self.bot.set_war_active(True)
-                    if reaction.emoji == Constants.EMOJI_CLOSE:
-                        logger.info(Constants.WAR_TRIGGER, Constants.CLOSE, user.display_name)
-                        self.__war_react = Constants.CLOSE
-                        self.bot.set_war_active(False)
-                    return True
-                return False
-
-            await asyncio.sleep(1)
-
-            try:
-                reaction, user = await self.bot.wait_for(Constants.REACTION_ADD, timeout=Constants.REACTION_TIMEOUT_SECONDS, check=check)
-                await msg.delete()
-                logger.info(Constants.REACTION_CHOSEN, self.__war_react)
-                if self.__war_react and not self.__war_react == Constants.STATUS:
-                    await chn.send(Constants.MSG_WAR_OPEN_UPDATE.format(message.author) if self.bot.get_war_active() else Constants.MSG_WAR_CLOSE_UPDATE.format(message.author))
-                else:
-                    await chn.send(Constants.MSG_WAR_STATUS.format(Constants.ACTIVE if self.bot.get_war_active() else Constants.INACTIVE))
-            except asyncio.TimeoutError:
-                logger.info(Constants.REACT_TIMEOUT, Constants.NODE_WAR)
-                await msg.delete()
-        else:
-            await chn.send(Constants.MSG_COMD_DENIED)
-
 
     @commands.Cog.listener()
     async def khan_announcement(self):
@@ -157,21 +72,6 @@ class Announcement(commands.Cog):
                     logger.info(Constants.INACTIVE_ANNOUNCER, Constants.NODE_WAR)
             await asyncio.sleep(1)
 
-    @commands.command(name=Constants.SNIPE_L)
-    async def receive_snipe_schedule(self, ctx):
-        logger.info("Snipe schedule function invoked")
-        if is_creme_brulee(ctx.message.author.roles):
-            if ctx.message.attachments:
-                logger.info("Snipe schedule attachment file received from %s", ctx.message.author.display_name)
-                snipe_schedule  = ctx.message.attachments[0]
-                await snipe_schedule.save(Constants.SNIPE_SCHEDULE_FILE)
-            else:
-                logger.info("Command invoked without attachments")
-                await ctx.send(Constants.MSG_NO_ATTACHMENTS)
-        else:
-            logger.info("Member %s tried to call officer only function", ctx.message.author.display_name)
-            await ctx.send(Constants.MSG_COMD_DENIED)
-
     def retrieve_snipe_duty_today(self):
         today_str = pendulum.today().format(Constants.DT_FORMAT_SNIPE)
 
@@ -180,10 +80,10 @@ class Announcement(commands.Cog):
             for line in data:
                 if line[0] == today_str:
                     logger.info("Snipe duty today: %s, notification preference: %s", line[1], line[3])
-                    self.set_snipe_duty_person(line[1], line[2], line[3])
+                    self.bot.set_snipe_duty_officer_today(line[1], line[2], line[3])
                     return
             logger.error("No data for today %s, defaulting to None", pendulum.today().format(Constants.DT_FORMAT_SNIPE))
-            self.__snipe_duty_person = None
+            self.bot.set_snipe_duty_officer_today(None)
 
     @commands.Cog.listener()
     async def snipe_reminder(self):
@@ -202,22 +102,18 @@ class Announcement(commands.Cog):
 
             # Sends reminder
             if pendulum.now().set(microsecond=Constants.ZERO) == pendulum.today().add(hours=17, minutes=30, seconds=0):
-                if self.__snipe_duty_person:
-                    if self.get_snipe_duty_person()[2] == 'Y':
-                        duty_officer = await self.bot.fetch_user(self.get_snipe_duty_person()[1])
+                snipe_officer_details = self.bot.get_snipe_duty_officer_today()
+                if snipe_officer_details:
+                    if snipe_officer_details[2] == 'Y':
+                        duty_officer = await self.bot.fetch_user(snipe_officer_details[1])
                         logger.info(Constants.SENT_ANNC, Constants.SNIPE_REMINDER, pendulum.now().strftime(Constants.DT_FORMAT_ANNC))
                         msg = await chn.send("{0.mention}\n```You are on snipe duty today, if you are unavailable, please ask other officers to take over!```".format(duty_officer))
                         #await add_msg_reactions(msg, Constants.YES_NO)
                 else:
-                    logger.error("No snipe duty determined for today, this is an error!")
+                    logger.error("No snipe duty determined for today.")
             await asyncio.sleep(1)
 
-    @commands.command(name=Constants.DUTY_L)
-    async def get_snipe_duty_officer_today(self, ctx):
-        if self.get_snipe_duty_officer_today():
-            await ctx.send("```{0} is on snipe duty today!```".format(self.get_snipe_duty_person()[0]))
-        else:
-            await ctx.send("```No snipe duty scheduled for today!```")
+
     def get_next_khan_dt(self):
         return self.bot.get_next_khan_annc().next(pendulum.SATURDAY).add(hours=Constants.SIXTEEN)
 
@@ -236,15 +132,6 @@ class Announcement(commands.Cog):
             else:
                 return pendulum.today().next(pendulum.FRIDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
         return None
-
-    def set_snipe_duty_person(self, officer_name: str, id: int, preference: str):
-        self.__snipe_duty_person = [officer_name, id, preference]
-
-    def get_snipe_duty_person(self):
-        return self.__snipe_duty_person
-
-
-
 
 def setup(bot):
     bot.add_cog(Announcement(bot))

@@ -24,6 +24,7 @@ class BDOBot(commands.Bot):
         self.__is_war_active = True
         self.__next_khan_annc = None
         self.__next_war_annc = None
+        self.__snipe_duty_officer_today = None
 
         self.startup_extensions = Constants.STARTUP_COG_MODULES
 
@@ -73,6 +74,12 @@ class BDOBot(commands.Bot):
 
     def set_next_war_annc(self, dt: datetime) -> None:
         self.__next_war_annc = dt
+
+    def set_snipe_duty_officer_today(self, officer_name: str, id: int, preference: str):
+        self.__snipe_duty_officer_today = [officer_name, id, preference]
+
+    def get_snipe_duty_officer_today(self):
+        return self.__snipe_duty_officer_today
 
     def run(self) -> None:
         for ext in self.startup_extensions:

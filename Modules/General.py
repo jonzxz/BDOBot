@@ -9,12 +9,10 @@ This class contains most of the bots commands and listeners.
 Some of these commands will probably be shifted to another Cog when more features are implemented
 """
 
-
 class General(commands.Cog):
     def __init__(self, bot):
         logger.info(Constants.COG_STARTUP, Constants.GENERAL)
         self.bot = bot
-        self.react_chosen = None
         self.bot.loop.create_task(self.update_roles())
 
     @commands.Cog.listener()
@@ -64,47 +62,14 @@ class General(commands.Cog):
             await chn.send(Constants.MSG_CALC_RES.format(msg, str(eval(msg))))
         except SyntaxError:
             await chn.send(Constants.MSG_CALC_FAIL)
-
-    @commands.command(name=Constants.RECRUIT_L)
-    async def recruit(self, message):
-        chn = message.channel
-        self.react_chosen = None
-
-        if is_creme_brulee(message.author.roles):
-            msg = await chn.send(Constants.MSG_RECRUIT_ENQUIRY)
-            await add_msg_reactions(msg, Constants.UPDATE)
-
-            def check(reaction, user):
-                if user == message.author:
-                    if reaction.emoji == Constants.EMOJI_STATUS:
-                        logger.info(Constants.RECRUIT_TRIGGER, Constants.STATUS, user.display_name)
-                        self.react_chosen = Constants.STATUS
-                    if reaction.emoji == Constants.EMOJI_OPEN:
-                        logger.info(Constants.RECRUIT_TRIGGER, Constants.STATUS, user.display_name)
-                        self.react_chosen = Constants.OPEN
-                        self.bot.set_recruit_open(True)
-                    if reaction.emoji == Constants.EMOJI_CLOSE:
-                        logger.info(Constants.RECRUIT_TRIGGER, Constants.CLOSE, user.display_name)
-                        self.react_chosen = Constants.CLOSE
-                        self.bot.set_recruit_open(False)
-                    return True
-                return False
-
-            await asyncio.sleep(1)
-
-            try:
-                reaction, user = await self.bot.wait_for(Constants.REACTION_ADD, timeout=Constants.REACTION_TIMEOUT_SECONDS, check=check)
-                await msg.delete()
-                logger.info(Constants.REACTION_CHOSEN, self.react_chosen)
-                if self.react_chosen and not self.react_chosen == Constants.STATUS:
-                    await chn.send(Constants.MSG_RECRUIT_OPEN_UPDATE.format(message.author) if self.bot.get_recruit_open() else Constants.MSG_RECRUIT_CLOSE_UPDATE.format(message.author))
-                else:
-                    await chn.send(Constants.MSG_RECRUIT_STATUS.format(Constants.OPEN if self.bot.get_recruit_open() else Constants.CLOSE))
-            except asyncio.TimeoutError:
-                logger.info(Constants.REACT_TIMEOUT, Constants.RECRUIT)
-                await msg.delete()
+    
+    @commands.command(name=Constants.DUTY_L)
+    async def send_snipe_duty_officer_today(self, ctx):
+        if self.bot.get_snipe_duty_officer_today():
+            await ctx.send("```{0} is on snipe duty today!```".format(self.bot.get_snipe_duty_officer_today()[0]))
         else:
-            await chn.send(Constants.MSG_COMD_DENIED)
+            await ctx.send("```No snipe duty scheduled for today!```")
+
 
     @commands.Cog.listener()
     async def update_roles(self):

@@ -1,5 +1,11 @@
 # Changelog
 
+## 31 Aug 2021
+- Fixed missing Constants causing closed recruitment message to not send
+
+## 30 Aug 2021
+- Added check for if snipe duty officer exist to prevent null
+
 ## 26 Aug 2021
 - Updated Welcome, Khan, Node War messages 
 
