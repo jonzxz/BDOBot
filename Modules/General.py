@@ -69,7 +69,7 @@ class General(commands.Cog):
         else:
             await ctx.send("```No snipe duty scheduled for today!```")
 
-    @commands.command(name="intro")
+    @commands.command(name=Constants.INTRO_L)
     async def send_intro_qn(self, ctx, msg):
         about_us = self.bot.get_channel(Constants.ID_CHN_ABOUT_US)
         member = await self.bot.fetch_user(msg[3:-1])
