@@ -66,6 +66,7 @@ HALP_L = 'halp'
 UWU_L = 'uwu'
 SNIPE_L = "snipe"
 DUTY_L = "duty"
+INTRO_L = "intro"
 
 # STRING
 PASTRIES = "Pastries"
