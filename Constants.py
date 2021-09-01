@@ -256,7 +256,7 @@ MSG_WAR_INVITE = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SP
 '> More details about the node we will be fighting in and platoon composition will be posted here on war day!\n\n' \
 '**CONFIRM YOUR ATTENDANCE**\n' \
 '> by reacting :regional_indicator_y: if you\'re going to attend, or :regional_indicator_n: if you\'re not!\n' \
-'*With consideration of participant caps, members with :regional_indicator_y: reacted in this post will be guaranteed a slot*\n' \ 
+'*With consideration of participant caps, members with :regional_indicator_y: reacted in this post will be guaranteed a slot*\n' \
 '<@&635776028048097290> <@&574641855229067264>'
 
 # ROLE

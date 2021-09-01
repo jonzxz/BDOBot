@@ -1,5 +1,9 @@
 # Changelog
 
+## 1 Sep 2021
+- Fixed a bug where logging error causes snipe reminder to fail
+- Fixed missing line in war announcement
+
 ## 31 Aug 2021
 - Fixed missing Constants causing closed recruitment message to not send
 - Added %intro feature to resend questionnaire
