@@ -98,7 +98,7 @@ class Announcement(commands.Cog):
             # Updates at 12am
             if pendulum.now().set(microsecond=Constants.ZERO) == pendulum.today().add(hours=0, minutes=0, seconds=1):
                 self.retrieve_snipe_duty_today()
-                logger.info("Updating snipe duty, today's duty: %s", self.get_snipe_duty_person()[0])
+                logger.info("Updating snipe duty, today's duty: %s", self.bot.get_snipe_duty_officer_today()[0])
 
             # Sends reminder
             if pendulum.now().set(microsecond=Constants.ZERO) == pendulum.today().add(hours=17, minutes=30, seconds=0):
