@@ -3,7 +3,7 @@ from discord.ext import commands
 import Constants
 from Logger import logger
 from discord.utils import get
-import discord, asyncio, re, emoji
+import discord, asyncio, re, emoji, csv
 
 class Officer(commands.Cog):
     def __init__(self, bot):
@@ -137,14 +137,21 @@ class Officer(commands.Cog):
     @commands.command(name=Constants.SNIPE_L)
     async def receive_snipe_schedule(self, ctx):
         logger.info("Snipe schedule function invoked")
-        if is_creme_brulee(ctx.message.author.roles):
+        if is_brioche_bun(ctx.message.author.roles):
             if ctx.message.attachments:
                 logger.info("Snipe schedule attachment file received from %s", ctx.message.author.display_name)
                 snipe_schedule  = ctx.message.attachments[0]
                 await snipe_schedule.save(Constants.SNIPE_SCHEDULE_FILE)
             else:
-                logger.info("Command invoked without attachments")
-                await ctx.send(Constants.MSG_NO_ATTACHMENTS)
+                logger.info("No attachments, sending planned snipe schedules")
+                schedules = []
+                with open (Constants.SNIPE_SCHEDULE_FILE, Constants.FILE_READ_MODE) as snipe_duty_file:
+                    data = csv.reader(snipe_duty_file, delimiter=",")
+                    for line in data:
+                        item = "{0}, {1}: {2}".format(line[0], line[4], line[1])
+                        schedules.append(item)
+                logger.info(schedules)
+                await ctx.send('```{}```'.format('\n'.join(schedules)))
         else:
             logger.info("Member %s tried to call officer only snipe function", ctx.message.author.display_name)
             await ctx.send(Constants.MSG_COMD_DENIED)

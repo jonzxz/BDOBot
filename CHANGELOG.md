@@ -1,5 +1,9 @@
 # Changelog
 
+## 2 Sep 2021
+- Fixed closed recruitment message line breaks
+- Updated %snipe to send schedule if no .csv file is submitted
+
 ## 1 Sep 2021
 - Fixed a bug where logging error causes snipe reminder to fail
 - Fixed missing line in war announcement

@@ -208,13 +208,13 @@ MSG_KHAN_INVITE = ':whale:**HI BREADS! LET\'S DO KHAN RAID TOMOROWWW!!:whale:\n\
 '<@&635776028048097290> <@&574641855229067264>'
 
 # RECRUIT
-MSG_REC_CLOSED_MSG = ":pretzel:**Welcome to Pastries!**:pretzel:\n\n' \
+MSG_REC_CLOSED_MSG = ':pretzel:**Welcome to Pastries!**:pretzel:\n\n' \
                 'Hello {0.mention}, Thank you for visiting our discord!\n' \
                 'We\'d really love to have you joining our little bakery.\nBut unfortunately, ' \
                 ':no_entry_sign:**our recruitment is CLOSED**:no_entry_sign: for the time being!\n' \
                 'Hopefully we\'d meet again in the next chance!\n\nIf you have any questions ' \
-                'feel free to mention Crème brûlée!\n' \
-                '*While you\'re here, please have some free cheese garlic bread* :sparkles:\n"
+                'feel free to mention @/[Officer]Brioche Bun!\n' \
+                '*While you\'re here, please have some free cheese garlic bread* :sparkles:\n'
 MSG_RECRUIT_ENQUIRY = "Please react to enquire or update recruitment status!\n\n" \
     ":bread: - Recruitment Status\n\n:o: - Opening of recruitment \n\n:x: - Closing of recruitment"
 MSG_RECRUIT_OPEN_UPDATE = "{0.mention} ```Updated recruitment status to open!```"
