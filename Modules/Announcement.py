@@ -83,7 +83,7 @@ class Announcement(commands.Cog):
                     self.bot.set_snipe_duty_officer_today(line[1], line[2], line[3])
                     return
             logger.error("No data for today %s, defaulting to None", pendulum.today().format(Constants.DT_FORMAT_SNIPE))
-            self.bot.set_snipe_duty_officer_today(None)
+            self.bot.set_snipe_duty_officer_today(None, None, None)
 
     @commands.Cog.listener()
     async def snipe_reminder(self):
