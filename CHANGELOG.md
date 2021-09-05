@@ -1,5 +1,8 @@
 # Changelog
 
+## 6 Sep 2021
+- Fixed missing positional arguments if no snipe duty for the day
+
 ## 2 Sep 2021
 - Fixed closed recruitment message line breaks
 - Updated %snipe to send schedule if no .csv file is submitted
