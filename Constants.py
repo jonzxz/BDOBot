@@ -1,3 +1,29 @@
+# CONFIGS
+## Set Bot MODE to DEV if developing. All Cogs will be disabled!
+## DEVELOPMENT MODE
+# MODE='DEV'
+# PREFIX_PERCENT = '&'
+
+## PRODUCTION MODE
+MODE='PROD'
+PREFIX_PERCENT = '%'
+
+STATUS_LOOP_TIME_SECONDS = 20
+REACTION_TIMEOUT_SECONDS = 7
+MEME_SUBREDDITS = ['memes', 'animemes', 'meme', 'goodanimemes']
+UWU_SUBREDDITS = ['goldenretrievers']
+BOSS_NOTIFICATION_NOTICE_SECONDS = 1800
+MODULES_GENERAL = 'Modules.General'
+MODULES_MARKET = 'Modules.Market'
+MODULES_BOSS = 'Modules.Boss'
+MODULES_FUN = 'Modules.Fun'
+MODULES_ANNOUNCE = 'Modules.Announcement'
+MODULES_OFFICER = 'Modules.Officer'
+MODULES_ROLE = 'Modules.Role'
+MODULES_DEV = 'Modules.Development'
+STARTUP_COG_MODULES = [MODULES_GENERAL, MODULES_MARKET, MODULES_BOSS, MODULES_FUN, MODULES_ANNOUNCE, MODULES_OFFICER, MODULES_ROLE] if MODE == 'PROD' else [MODULES_DEV]
+
+
 # LOGGING
 COG_STARTUP = "starting up %s Cog"
 ON_MEMBER_JOIN = "%s has joined, sleeping for 25 seconds before sending welcome"
@@ -97,8 +123,7 @@ BOSS_HUNTER = "Boss Hunter"
 PRAW_CLIENT_ID = "PRAW_CLIENT_ID"
 PRAW_CLIENT_SECRET = "PRAW_CLIENT_SECRET"
 DISCORD_TOKEN = "DISCORD_TOKEN"
-DISCORD_TOKEN_FILE = "token.txt"
-PRAW_SECRET_FILE = "praw_secrets.txt"
+DOTENV_FILE = ".env"
 FILE_READ_MODE = 'r'
 ROLE_UPDATE = "role update"
 CROISSANT = "Croissant"
@@ -119,22 +144,6 @@ SNIPE_REMINDER = "Snipe Reminder"
 OFFICER = "Officer"
 ROLE = "Role"
 
-# CONFIGS
-STATUS_LOOP_TIME_SECONDS = 20
-REACTION_TIMEOUT_SECONDS = 7
-PREFIX_PERCENT = "%"
-MEME_SUBREDDITS = ['memes', 'animemes', 'meme', 'goodanimemes']
-UWU_SUBREDDITS = ['goldenretrievers']
-BOSS_NOTIFICATION_NOTICE_SECONDS = 1800
-
-MODULES_GENERAL = 'Modules.General'
-MODULES_MARKET = 'Modules.Market'
-MODULES_BOSS = 'Modules.Boss'
-MODULES_FUN = 'Modules.Fun'
-MODULES_ANNOUNCE = 'Modules.Announcement'
-MODULES_OFFICER = 'Modules.Officer'
-MODULES_ROLE = 'Modules.Role'
-STARTUP_COG_MODULES = [MODULES_GENERAL, MODULES_MARKET, MODULES_BOSS, MODULES_FUN, MODULES_ANNOUNCE, MODULES_OFFICER, MODULES_ROLE]
 
 # ANIME/MANGA
 MSG_FUN_RESPONSE = '```{0}```\n```{1}```\n{2}'

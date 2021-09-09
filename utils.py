@@ -30,15 +30,15 @@ def get_token():
     logger.info(Constants.RETRIEVE_DISCORD_CONFIG)
     DISCORD_TOKEN = os.environ.get(Constants.DISCORD_TOKEN)
     if not (DISCORD_TOKEN):
-        logger.warning(Constants.ENV_VAR_NOT_FOUND, Constants.DISCORD_TOKEN, Constants.DISCORD_TOKEN_FILE)
+        logger.warning(Constants.ENV_VAR_NOT_FOUND, Constants.DISCORD_TOKEN, Constants.DOTENV_FILE)
         try:
-            with open(Constants.DISCORD_TOKEN_FILE, Constants.FILE_READ_MODE) as token_file:
-                token = token_file.read()
+            with open(Constants.DOTENV_FILE, Constants.FILE_READ_MODE) as token_file:
+                token = token_file.read().split(sep='\n')
                 token_file.close()
-                DISCORD_TOKEN = token
-                logger.info(Constants.CONFIG_FILE_RETRIEVE_SUCCESS, Constants.DISCORD_TOKEN, Constants.DISCORD_TOKEN_FILE)
+                DISCORD_TOKEN = token[0].split(sep='=')[1]
+                logger.info(Constants.CONFIG_FILE_RETRIEVE_SUCCESS, Constants.DISCORD_TOKEN, Constants.DOTENV_FILE)
         except FileNotFoundError:
-            logger.error(Constants.FILE_NOT_FOUND, Constants.DISCORD_TOKEN_FILE)
+            logger.error(Constants.FILE_NOT_FOUND, Constants.DOTENV_FILE)
     return DISCORD_TOKEN
 
 def get_praw_secrets():
@@ -47,14 +47,15 @@ def get_praw_secrets():
     CLIENT_SECRET = os.environ.get(Constants.PRAW_CLIENT_SECRET)
 
     if not (CLIENT_ID or CLIENT_SECRET):
-        logger.warning(Constants.ENV_VAR_NOT_FOUND, Constants.PRAW_CLIENT_ID + '/' + Constants.PRAW_CLIENT_SECRET, Constants.PRAW_SECRET_FILE)
+        logger.warning(Constants.ENV_VAR_NOT_FOUND, Constants.PRAW_CLIENT_ID + '/' + Constants.PRAW_CLIENT_SECRET, Constants.DOTENV_FILE)
         try:
-            with open(Constants.PRAW_SECRET_FILE, Constants.FILE_READ_MODE) as praw_secrets:
+            with open(Constants.DOTENV_FILE, Constants.FILE_READ_MODE) as praw_secrets:
                 secrets = praw_secrets.read().split(sep='\n')
                 praw_secrets.close()
-                PRAW_SECRETS = [secrets[0], secrets[1]]
+                PRAW_SECRETS = [secrets[1].split(sep='=')[1], secrets[2].split(sep='=')[1]]
+                logger.info(Constants.CONFIG_FILE_RETRIEVE_SUCCESS, Constants.PRAW_CLIENT_ID + '/' + Constants.PRAW_CLIENT_SECRET, Constants.DOTENV_FILE)
         except FileNotFoundError:
-            logger.error(Constants.FILE_NOT_FOUND, Constants.PRAW_SECRET_FILE)
+            logger.error(Constants.FILE_NOT_FOUND, Constants.DOTENV_FILE)
     else:
         PRAW_SECRETS = [CLIENT_ID, CLIENT_SECRET]
     return PRAW_SECRETS
