@@ -268,6 +268,25 @@ MSG_WAR_INVITE = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SP
 '*With consideration of participant caps, members with :regional_indicator_y: reacted in this post will be guaranteed a slot*\n' \
 '<@&635776028048097290> <@&574641855229067264>'
 
+
+MSG_WAR_INVITE_T = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SPREAD!:crossed_swords:\n\n' \
+':calendar_spiral:Mark your calendar!**\n' \
+'`{0} GMT+8`\n`{1} GMT+8`\n`{2} GMT+8`\n\n' \
+':pretzel:We will be participating in **Tier 1** Node War @ **Serendia 1**\n' \
+':pretzel:**We need as many participants as possible!** No minimum gearscore required, EVERYONE is invited to join in the fun, the more the merrier!<:yay:707879651804053565>\n' \
+':pretzel:Shotcalls will be on Discord so joining in voice chat is mandatory! <:kagi_proudmum:830388637073145907>\n\n' \
+'> *New to Node War? Just come and join us! We fully support every breads who wanna try new experiences!*<:yay:707879651804053565>\n' \
+'> While knowing how to PVP is crucial, there are so much more into NW if you prefer the \'less-agressive\' way to contribute, i.e. Carrack-captain, Elephant-rider + Spear-thrower, Flame Tower pilot, Cannoneer, Hwacha pilot, etc!\n' \
+'> Kindly poke any of our officers if you\'re interested or have any questions in any of these stuff!\n' \
+'> **Pastres\' NW Pocket guide** Google Doc for our first-timer NW breads: https://tinyurl.com/6kshnxm3\n' \
+'> If you have any questions feel free to ask in {3.mention}\n\n' \
+'> **Please post/update your character gear info in {4.mention} to help us in making team compositions!**\n' \
+'> More details about the node we will be fighting in and platoon composition will be posted here on war day!\n\n' \
+'**CONFIRM YOUR ATTENDANCE**\n' \
+'> by reacting on the days you are available to join us!\n' \
+':regional_indicator_s: Sunday, :regional_indicator_t: Tuesday, :regional_indicator_f: Friday\n'
+# '<@&635776028048097290> <@&574641855229067264>'
+
 # ROLE
 MSG_ROLE_MENU = "Hello {0.mention}, welcome to the Roles menu!\n\n" \
         "In this menu, you can register / unregister for custom roles we have in Pastries\n" \
@@ -301,6 +320,9 @@ EMOJI_EL_YAY_C_ID = 707879651804053565
 EMOJI_BAM_MAD_C_ID = 868057992170463243
 EMOJI_EL_SIP_C_ID = 867338932676329472
 EMOJI_MIIA_GASP_C_ID = 868001842011992124
+EMOJI_REGIONAL_S = "\U0001F1F8"
+EMOJI_REGIONAL_T = '\U0001F1F9'
+EMOJI_REGIONAL_F = '\U0001F1EB'
 
 # ID
 ID_CHN_ABOUT_US = 575282309947850822

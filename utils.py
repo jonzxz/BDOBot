@@ -99,6 +99,11 @@ async def add_msg_reactions(msg: Message, msg_type: str) -> None:
         await msg.add_reaction(Constants.EMOJI_BAM_MAD_C)
         await msg.add_reaction(Constants.EMOJI_EL_YAY_C)
         await msg.add_reaction(Constants.EMOJI_MIIA_GASP_C)
+    if (msg_type == Constants.WAR_CAPS):
+        logger.info(Constants.ADD_REACTION_FOR_MSG, Constants.WAR_CAPS)
+        await msg.add_reaction(Constants.EMOJI_REGIONAL_S)
+        await msg.add_reaction(Constants.EMOJI_REGIONAL_T)
+        await msg.add_reaction(Constants.EMOJI_REGIONAL_F)
 def is_creme_brulee(role_list: List[Role]) -> bool:
     return Constants.ID_ROLE_CREME in [role.id for role in role_list]
 

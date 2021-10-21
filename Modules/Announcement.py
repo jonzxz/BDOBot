@@ -12,7 +12,7 @@ class Announcement(commands.Cog):
         self.bot = bot
         self.bot.loop.create_task(self.khan_announcement())
         self.bot.loop.create_task(self.war_announcement())
-        self.bot.loop.create_task(self.snipe_reminder())
+        # self.bot.loop.create_task(self.snipe_reminder())
 
     @commands.Cog.listener()
     async def khan_announcement(self):
@@ -56,16 +56,21 @@ class Announcement(commands.Cog):
             # logger.info("Comparing now: " + pendulum.now().strftime('%H:%M:%S') + " to next time: " + self.bot.get_next_war_annc().strftime('%H:%M:%S'))
             if pendulum.now().set(microsecond=Constants.ZERO) == self.bot.get_next_war_annc():
                 if self.bot.get_war_active():
+                    war_dates = self.get_next_war_dt()
                     gear_class_chn = self.bot.get_channel(Constants.ID_CHN_GEAR_CLASS)
                     discussion_chn = self.bot.get_channel(Constants.ID_CHN_ACTIV_DISCUSS)
                     logger.info(Constants.SENT_ANNC, Constants.NODE_WAR, pendulum.now().strftime(Constants.DT_FORMAT_ANNC))
                     await chn.send(file=File(Constants.ASSET_NW_ANNC))
-                    msg = await chn.send(Constants.MSG_WAR_INVITE.format(self.get_next_war_dt().format(Constants.DT_FORMAT_INVITE), discussion_chn, gear_class_chn))
-                    await add_msg_reactions(msg, Constants.YES_NO)
+                    msg = await chn.send(Constants.MSG_WAR_INVITE_T.format(
+                        self.process_dt_to_string(war_dates[0], Constants.DT_FORMAT_INVITE),
+                        self.process_dt_to_string(war_dates[1], Constants.DT_FORMAT_INVITE),
+                        self.process_dt_to_string(war_dates[2], Constants.DT_FORMAT_INVITE),
+                        discussion_chn, gear_class_chn))
+                    await add_msg_reactions(msg, Constants.WAR_CAPS)
 
-                    logger.info(Constants.UPCOMING_ANNC, Constants.NODE_WAR, self.get_next_war_dt().strftime(Constants.DT_FORMAT_ANNC))
+                    logger.info(Constants.UPCOMING_ANNC, Constants.NODE_WAR, (', '.join([date.strftime(Constants.DT_FORMAT_ANNC) for date in war_dates])))
 
-                    next_war_annc = pendulum.today().next(pendulum.WEDNESDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
+                    next_war_annc = pendulum.today().next(pendulum.SATURDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
                     self.bot.set_next_war_annc(next_war_annc)
                     logger.info(Constants.NEXT_ANNC, Constants.NODE_WAR, self.bot.get_next_war_annc().strftime(Constants.DT_FORMAT_ANNC))
                 else:
@@ -118,14 +123,21 @@ class Announcement(commands.Cog):
         return self.bot.get_next_khan_annc().next(pendulum.SATURDAY).add(hours=Constants.SIXTEEN)
 
     def get_next_war_dt(self):
-        return self.bot.get_next_war_annc().next(pendulum.SUNDAY).add(hours=Constants.TWENTY_ONE)
+        return [
+            self.bot.get_next_war_annc().next(pendulum.SUNDAY).add(hours=Constants.TWENTY_ONE),
+            self.bot.get_next_war_annc().next(pendulum.TUESDAY).add(hours=Constants.TWENTY_ONE),
+            self.bot.get_next_war_annc().next(pendulum.FRIDAY).add(hours=Constants.TWENTY_ONE)
+            ]
+
+    def process_dt_to_string(self, dt: datetime, format: str):
+        return dt.format(format)
 
     def calc_next_annc_dt(self, annc_type: str) -> datetime:
         if (annc_type == Constants.WAR_CAPS):
-            if pendulum.today().day_of_week == pendulum.WEDNESDAY and pendulum.now() <= pendulum.today().add(hours=Constants.EIGHTEEN):
+            if pendulum.today().day_of_week == pendulum.SATURDAY and pendulum.now() <= pendulum.today().add(hours=Constants.EIGHTEEN):
                 return pendulum.today().add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
             else:
-                return pendulum.today().next(pendulum.WEDNESDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
+                return pendulum.today().next(pendulum.SATURDAY).add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
         if (annc_type == Constants.KHAN_CAPS):
             if pendulum.today().day_of_week == pendulum.FRIDAY and pendulum.now() <= pendulum.today().add(hours=Constants.EIGHTEEN):
                 return pendulum.today().add(hours=Constants.EIGHTEEN, minutes=Constants.ZERO, seconds=Constants.ZERO)
