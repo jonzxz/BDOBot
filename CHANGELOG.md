@@ -1,5 +1,10 @@
 # Changelog
 
+## 9 Sep 2021
+- Removed use of secrets.txt and praw_secrets.txt, secrets now grabbed from .env
+- Added Development Cog for new features to be developed in there
+- Added development mode in Constants.py to toggle between production and development mode (dev mode disables all other modules live)
+
 ## 6 Sep 2021
 - Fixed missing positional arguments if no snipe duty for the day
 
