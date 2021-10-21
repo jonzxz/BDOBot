@@ -61,7 +61,7 @@ class Announcement(commands.Cog):
                     discussion_chn = self.bot.get_channel(Constants.ID_CHN_ACTIV_DISCUSS)
                     logger.info(Constants.SENT_ANNC, Constants.NODE_WAR, pendulum.now().strftime(Constants.DT_FORMAT_ANNC))
                     await chn.send(file=File(Constants.ASSET_NW_ANNC))
-                    msg = await chn.send(Constants.MSG_WAR_INVITE_T.format(
+                    msg = await chn.send(Constants.MSG_WAR_INVITE.format(
                         self.process_dt_to_string(war_dates[0], Constants.DT_FORMAT_INVITE),
                         self.process_dt_to_string(war_dates[1], Constants.DT_FORMAT_INVITE),
                         self.process_dt_to_string(war_dates[2], Constants.DT_FORMAT_INVITE),

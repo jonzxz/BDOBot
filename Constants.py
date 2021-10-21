@@ -251,25 +251,25 @@ MSG_WAR_CLOSE_UPDATE = "{0.mention} ```Updated War Announcement status to inacti
 MSG_WAR_STATUS = "```War Announcement Status: {0}```"
 MSG_NO_ATTACHMENTS = "```No attachments found in message, please send .csv with valid format!```"
 
+# MSG_WAR_INVITE = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SPREAD!:crossed_swords:\n\n' \
+# ':calendar_spiral:Mark your calendar!**\n' \
+# '`{0} GMT+8`\n\n' \
+# ':pretzel:We will be participating in **Tier 1** Node War! Server will be announced 1 hour before Node War starts!\n' \
+# ':pretzel:We have up to 55 slots for everyone to join in. **No minimum gearscore required**, EVERYONE is invited to join in the fun, the more the merrier!\n' \
+# ':pretzel:Shotcalls will be on Discord so joining in voice chat is mandatory! <:kagi_proudmum:830388637073145907>\n\n' \
+# '> *New to Node War? Just come and join us! We fully support every breads who wanna try new experiences!* \n' \
+# '> While knowing how to PVP is crucial, there are so much more into NW if you prefer the \'less-agressive\' way to contribute, i.e. Carrack-captain, Elephant-rider + Spear-thrower, Flame Tower pilot, Cannoneer, Hwacha pilot, etc!' \
+# '> Kindly poke any of our officers if you\'re interested or have any questions in any of these stuff!\n' \
+# '> Alternatively, Node War guides and discussions are on {1.mention}\n\n' \
+# '> Please post/update your character gear info in {2.mention} to help us in making team compositions easier!\n' \
+# '> More details about the node we will be fighting in and platoon composition will be posted here on war day!\n\n' \
+# '**CONFIRM YOUR ATTENDANCE**\n' \
+# '> by reacting :regional_indicator_y: if you\'re going to attend, or :regional_indicator_n: if you\'re not!\n' \
+# '*With consideration of participant caps, members with :regional_indicator_y: reacted in this post will be guaranteed a slot*\n' \
+# '<@&635776028048097290> <@&574641855229067264>'
+
+
 MSG_WAR_INVITE = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SPREAD!:crossed_swords:\n\n' \
-':calendar_spiral:Mark your calendar!**\n' \
-'`{0} GMT+8`\n\n' \
-':pretzel:We will be participating in **Tier 1** Node War! Server will be announced 1 hour before Node War starts!\n' \
-':pretzel:We have up to 55 slots for everyone to join in. **No minimum gearscore required**, EVERYONE is invited to join in the fun, the more the merrier!\n' \
-':pretzel:Shotcalls will be on Discord so joining in voice chat is mandatory! <:kagi_proudmum:830388637073145907>\n\n' \
-'> *New to Node War? Just come and join us! We fully support every breads who wanna try new experiences!* \n' \
-'> While knowing how to PVP is crucial, there are so much more into NW if you prefer the \'less-agressive\' way to contribute, i.e. Carrack-captain, Elephant-rider + Spear-thrower, Flame Tower pilot, Cannoneer, Hwacha pilot, etc!' \
-'> Kindly poke any of our officers if you\'re interested or have any questions in any of these stuff!\n' \
-'> Alternatively, Node War guides and discussions are on {1.mention}\n\n' \
-'> Please post/update your character gear info in {2.mention} to help us in making team compositions easier!\n' \
-'> More details about the node we will be fighting in and platoon composition will be posted here on war day!\n\n' \
-'**CONFIRM YOUR ATTENDANCE**\n' \
-'> by reacting :regional_indicator_y: if you\'re going to attend, or :regional_indicator_n: if you\'re not!\n' \
-'*With consideration of participant caps, members with :regional_indicator_y: reacted in this post will be guaranteed a slot*\n' \
-'<@&635776028048097290> <@&574641855229067264>'
-
-
-MSG_WAR_INVITE_T = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SPREAD!:crossed_swords:\n\n' \
 ':calendar_spiral:Mark your calendar!**\n' \
 '`{0} GMT+8`\n`{1} GMT+8`\n`{2} GMT+8`\n\n' \
 ':pretzel:We will be participating in **Tier 1** Node War @ **Serendia 1**\n' \
@@ -284,8 +284,8 @@ MSG_WAR_INVITE_T = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO 
 '> More details about the node we will be fighting in and platoon composition will be posted here on war day!\n\n' \
 '**CONFIRM YOUR ATTENDANCE**\n' \
 '> by reacting on the days you are available to join us!\n' \
-':regional_indicator_s: Sunday, :regional_indicator_t: Tuesday, :regional_indicator_f: Friday\n'
-# '<@&635776028048097290> <@&574641855229067264>'
+':regional_indicator_s: Sunday, :regional_indicator_t: Tuesday, :regional_indicator_f: Friday\n' \
+'<@&635776028048097290> <@&574641855229067264>'
 
 # ROLE
 MSG_ROLE_MENU = "Hello {0.mention}, welcome to the Roles menu!\n\n" \
