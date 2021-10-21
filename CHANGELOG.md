@@ -1,5 +1,9 @@
 # Changelog
 
+## 21 Oct 2021
+- Updated war announcement message to be 3 times a week, added new logic to retrieve date
+- Removed snipe reminders
+
 ## 9 Sep 2021
 - Removed use of secrets.txt and praw_secrets.txt, secrets now grabbed from .env
 - Added Development Cog for new features to be developed in there
