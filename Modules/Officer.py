@@ -164,7 +164,6 @@ class Officer(commands.Cog):
             try:
                 member = await self.bot.fetch_user(msg[3:-1])
                 logger.info("{0} invoked intro for {1}".format(ctx.message.author.display_name, member.display_name))
-                await ctx.send(Constants.MSG_REC_OPEN_MSG.format(member.mention, about_us))
             except NotFound:
                 logger.info("Unknown user fetched by {0}, setting member to empty string and sending generic welcome message instead".format(ctx.message.author.display_name))
                 member = None
