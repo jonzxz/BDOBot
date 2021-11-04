@@ -59,14 +59,14 @@ class Announcement(commands.Cog):
                     war_dates = self.get_next_war_dt()
                     gear_class_chn = self.bot.get_channel(Constants.ID_CHN_GEAR_CLASS)
                     discussion_chn = self.bot.get_channel(Constants.ID_CHN_ACTIV_DISCUSS)
+                    attendance_chn = self.bot.get_channel(Consants.ID_CHN_WAR_ATTENDANCE)
                     logger.info(Constants.SENT_ANNC, Constants.NODE_WAR, pendulum.now().strftime(Constants.DT_FORMAT_ANNC))
                     await chn.send(file=File(Constants.ASSET_NW_ANNC))
                     msg = await chn.send(Constants.MSG_WAR_INVITE.format(
                         self.process_dt_to_string(war_dates[0], Constants.DT_FORMAT_INVITE),
                         self.process_dt_to_string(war_dates[1], Constants.DT_FORMAT_INVITE),
                         self.process_dt_to_string(war_dates[2], Constants.DT_FORMAT_INVITE),
-                        discussion_chn, gear_class_chn))
-                    await add_msg_reactions(msg, Constants.WAR_CAPS)
+                        discussion_chn, gear_class_chn, attendance_chn))
 
                     logger.info(Constants.UPCOMING_ANNC, Constants.NODE_WAR, (', '.join([date.strftime(Constants.DT_FORMAT_ANNC) for date in war_dates])))
 

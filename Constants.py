@@ -1,12 +1,12 @@
 # CONFIGS
 ## Set Bot MODE to DEV if developing. All Cogs will be disabled!
 ## DEVELOPMENT MODE
-# MODE='DEV'
-# PREFIX_PERCENT = '&'
+MODE='DEV'
+PREFIX_PERCENT = '&'
 
 ## PRODUCTION MODE
-MODE='PROD'
-PREFIX_PERCENT = '%'
+# MODE='PROD'
+# PREFIX_PERCENT = '%'
 
 STATUS_LOOP_TIME_SECONDS = 20
 REACTION_TIMEOUT_SECONDS = 7
@@ -230,7 +230,7 @@ MSG_RECRUIT_OPEN_UPDATE = "{0.mention} ```Updated recruitment status to open!```
 MSG_RECRUIT_CLOSE_UPDATE = "{0.mention} ```Updated recruitment status to closed!```"
 MSG_RECRUIT_STATUS = "```Recruitment Status: {0}```"
 
-MSG_REC_OPEN_MSG =':sparkles::pretzel:**Hello fresh dough {0.mention}, welcome to Pastries!**:sparkles::pretzel:\n' \
+MSG_REC_OPEN_MSG =':sparkles::pretzel:**Hello fresh dough {0}, welcome to Pastries!**:sparkles::pretzel:\n' \
                'We would like you to answer the following short questions before proceeding!\n\n' \
                '> **01. What\'s your in-game Family Name? Where did you find our guild from?** *i.e. from server-chat advertisement, recommendation from a friend (please identify), Guild Rank Board, BDO SEA community forum, etc*\n\n' \
                '> **02. What are you looking for in a guild?** *i.e. Payouts, socializing, guidance in game*\n\n' \
@@ -251,23 +251,6 @@ MSG_WAR_CLOSE_UPDATE = "{0.mention} ```Updated War Announcement status to inacti
 MSG_WAR_STATUS = "```War Announcement Status: {0}```"
 MSG_NO_ATTACHMENTS = "```No attachments found in message, please send .csv with valid format!```"
 
-# MSG_WAR_INVITE = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SPREAD!:crossed_swords:\n\n' \
-# ':calendar_spiral:Mark your calendar!**\n' \
-# '`{0} GMT+8`\n\n' \
-# ':pretzel:We will be participating in **Tier 1** Node War! Server will be announced 1 hour before Node War starts!\n' \
-# ':pretzel:We have up to 55 slots for everyone to join in. **No minimum gearscore required**, EVERYONE is invited to join in the fun, the more the merrier!\n' \
-# ':pretzel:Shotcalls will be on Discord so joining in voice chat is mandatory! <:kagi_proudmum:830388637073145907>\n\n' \
-# '> *New to Node War? Just come and join us! We fully support every breads who wanna try new experiences!* \n' \
-# '> While knowing how to PVP is crucial, there are so much more into NW if you prefer the \'less-agressive\' way to contribute, i.e. Carrack-captain, Elephant-rider + Spear-thrower, Flame Tower pilot, Cannoneer, Hwacha pilot, etc!' \
-# '> Kindly poke any of our officers if you\'re interested or have any questions in any of these stuff!\n' \
-# '> Alternatively, Node War guides and discussions are on {1.mention}\n\n' \
-# '> Please post/update your character gear info in {2.mention} to help us in making team compositions easier!\n' \
-# '> More details about the node we will be fighting in and platoon composition will be posted here on war day!\n\n' \
-# '**CONFIRM YOUR ATTENDANCE**\n' \
-# '> by reacting :regional_indicator_y: if you\'re going to attend, or :regional_indicator_n: if you\'re not!\n' \
-# '*With consideration of participant caps, members with :regional_indicator_y: reacted in this post will be guaranteed a slot*\n' \
-# '<@&635776028048097290> <@&574641855229067264>'
-
 
 MSG_WAR_INVITE = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SPREAD!:crossed_swords:\n\n' \
 ':calendar_spiral:Mark your calendar!**\n' \
@@ -283,9 +266,8 @@ MSG_WAR_INVITE = ':crossed_swords:**PREPARE YOUR KNAIFU WE GOT SOME BUTTER TO SP
 '> **Please post/update your character gear info in {4.mention} to help us in making team compositions!**\n' \
 '> More details about the node we will be fighting in and platoon composition will be posted here on war day!\n\n' \
 '**CONFIRM YOUR ATTENDANCE**\n' \
-'> by reacting on the days you are available to join us!\n' \
-':regional_indicator_s: Sunday, :regional_indicator_t: Tuesday, :regional_indicator_f: Friday\n' \
-'<@&635776028048097290> <@&574641855229067264>'
+'> by reacting on the days you are available to join us in {5.mention}!\n' \
+'> All attendance announcements will be made 3 days before the war!\n'
 
 # ROLE
 MSG_ROLE_MENU = "Hello {0.mention}, welcome to the Roles menu!\n\n" \
@@ -334,6 +316,7 @@ ID_CHN_MENU_BOARD =574650178183626771
 ID_CHN_ACTIV_DISCUSS = 645931876107943967
 ID_CHN_GEAR_CLASS = 801731373147881515
 ID_CHN_KAGI_PLAYGROUND = 871250117120909362
+ID_CHN_WAR_ATTENDANCE = 905295084797444127
 ID_ROLE_BOSSHUNTER = 623100796833234955
 ID_ROLE_BRIOCHE = 635776028048097290
 ID_ROLE_CREME = 574641817505497106

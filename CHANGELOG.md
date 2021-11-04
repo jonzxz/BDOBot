@@ -1,5 +1,9 @@
 # Changelog
 
+## 4 Nov 2021
+- Removed ping and reactions on node war announcement message
+- Added handling for %intro if user is unable to be fetched to send a generic message instead
+
 ## 21 Oct 2021
 - Updated war announcement message to be 3 times a week, added new logic to retrieve date
 - Removed snipe reminders
