@@ -15,7 +15,7 @@ discord==1.0.1
 discord.py==1.7.1
 emoji==1.2.0
 idna==2.10
-lxml==4.6.3
+lxml==4.6.5
 mal-api==0.4.0
 multidict==5.1.0
 pendulum==2.1.2
