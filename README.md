@@ -2,6 +2,8 @@
 This project is a Discord Bot written in Python for the online MMORPG Black Desert Online.
 The bot is my first Discord bot and my first side project that I have decided to take up in order to create some convenience.
 
+# Bot is decommissioned as of 6 March 2022, project is no longer maintained.
+
 ## Features
 - This bot provides multiple features that may aid in the gameplay or additional fun features
 - Gameplay related features: 
